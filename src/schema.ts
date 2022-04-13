@@ -9,29 +9,27 @@ export default {
   properties: {
     eol: {
       type: 'string',
-      description:
-        'Newline character to be used in generated d.ts files. Uses OS default. This option is overridden by the formatter option.'
+      description: 'Newline character in `*.d.ts` file. Use OS default. This option may be overridden by formatter option.'
     },
     banner: {
       type: 'string',
-      description: "To add a 'banner' prefix to each generated `*.d.ts` file"
+      description: 'To add a banner prefix to each `*.d.ts` file.'
     },
     formatter: {
       enum: ['prettier', 'none'],
-      description:
-        'Possible options: none and prettier (requires prettier package installed). Defaults to prettier if `prettier` module can be resolved'
+      description: 'Formatter: none or prettier (require prettier installed). Defaults to prettier if prettier installed.'
     },
     disableLocalsExport: {
       type: 'boolean',
-      description: 'Disable the use of locals export. Defaults to `false`'
+      description: 'Disable the use of locals export. Defaults to `false`.'
     },
     verifyOnly: {
       type: 'boolean',
-      description: 'Validate generated `*.d.ts` files and fail if an update is needed (useful in CI). Defaults to `false`'
+      description: 'Validate `*.d.ts` files and fail if an update is needed (useful in CI). Defaults to `false`.'
     },
     prettierConfigFile: {
       type: 'string',
-      description: 'Path to prettier config file'
+      description: 'Path to prettier config file.'
     }
   },
   additionalProperties: false
