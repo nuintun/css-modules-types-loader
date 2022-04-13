@@ -27,6 +27,6 @@ export default function rollup(esnext) {
         warn(error);
       }
     },
-    external: []
+    external: ['fs', 'path', 'util', 'tslib', 'camelcase']
   };
 }

@@ -41,6 +41,9 @@
     "url": "https://github.com/nuintun/css-modules-types-loader/issues"
   },
   "homepage": "https://github.com/nuintun/css-modules-types-loader#readme",
+  "peerDependencies": {
+    "webpack": "^5.0.0"
+  },
   "dependencies": {
     "camelcase": "^6.3.0",
     "tslib": "^2.3.1"
@@ -51,6 +54,7 @@
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.70.1",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0"
   }
 }
