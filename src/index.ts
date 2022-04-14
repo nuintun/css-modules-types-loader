@@ -23,5 +23,7 @@ export default (async function loader(content) {
 
   const options = this.getOptions(schema);
 
+  console.log(options);
+
   return content;
 } as LoaderDefinitionFunction<Options>);

@@ -1,0 +1,83 @@
+const path = require('path');
+const webpack = require('webpack');
+
+const compiler = webpack({
+  name: 'react',
+  mode: 'development',
+  target: ['web', 'es5'],
+  context: path.resolve('src'),
+  entry: path.resolve('tests/index.js'),
+  output: {
+    publicPath: '/dist/',
+    filename: `[name].js`,
+    chunkFilename: `[name].js`,
+    path: path.resolve('tests/dist'),
+    assetModuleFilename: `[path][name][ext]`
+  },
+  resolve: {
+    fallback: { url: false }
+  },
+  stats: {
+    colors: true,
+    chunks: false,
+    children: false,
+    entrypoints: false,
+    runtimeModules: false,
+    dependentModules: false
+  },
+  module: {
+    rules: [
+      {
+        oneOf: [
+          {
+            test: /\.css$/,
+            exclude: /[\\/]node_modules[\\/]/,
+            use: [
+              {
+                loader: require.resolve('./loader.js'),
+                options: {
+                  type: 'style'
+                }
+              },
+              {
+                loader: 'style-loader',
+                options: {
+                  esModule: true
+                }
+              },
+              {
+                loader: require.resolve('./loader.js'),
+                options: {
+                  type: 'css'
+                }
+              },
+              {
+                loader: 'css-loader',
+                options: {
+                  esModule: true,
+                  modules: {
+                    auto: true,
+                    namedExport: true,
+                    localIdentName: '[local]-[hash:8]',
+                    exportLocalsConvention: 'camelCaseOnly'
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [new webpack.ProgressPlugin({ percentBy: 'entries' })]
+});
+
+compiler.run((error, stats) => {
+  compiler.close(() => {
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(stats.toString(compiler.options.stats));
+    }
+  });
+});

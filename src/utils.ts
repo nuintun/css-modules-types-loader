@@ -5,7 +5,18 @@
 import path from 'path';
 import camelCase from 'camelcase';
 
-export function getCssModuleKeys(content: string): string[] {
+// const KEY_REGEX = /(["'])([^"'\\/;()\n]+)\1\s*:/g;
+// const NAMED_KEY_REGEX = /export\s+(var|let|const)\s+(\w+)\s+=/g;
+
+export function getCssModuleKeys(content: string | Buffer): string[] {
+  if (Buffer.isBuffer(content)) {
+    content = content.toString('utf-8');
+  }
+
+  // let isNamedExport = false;
+  // // check v4 / v5
+  // let from = content.indexOf('___CSS_LOADER_EXPORT___.locals = {');
+
   let match: string[] | null;
 
   const keyRegex = /"([^"\n]+)":/g;

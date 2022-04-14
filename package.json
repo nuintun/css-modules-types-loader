@@ -11,6 +11,7 @@
   "scripts": {
     "lint": "tsc --noEmit",
     "clean": "node tools/clean.js",
+    "test": "node tests/webpack.js",
     "prepublishOnly": "npm run build",
     "build:cjs": "rollup -c tools/rollup.cjs.js",
     "build:esm": "rollup -c tools/rollup.esm.js",
@@ -49,11 +50,13 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.1",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "css-loader": "^6.7.1",
     "magic-string": "^0.26.1",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.70.1",
+    "style-loader": "^3.3.1",
     "typescript": "^4.6.3",
     "webpack": "^5.72.0"
   }
