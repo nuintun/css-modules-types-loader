@@ -3,6 +3,7 @@
  */
 
 // https://github.com/Megaputer/dts-css-modules-loader
+// https://github.com/kagawagao/css-modules-typings-loader
 
 import schema from './schema';
 import { LoaderDefinitionFunction } from 'webpack';
