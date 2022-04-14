@@ -46,11 +46,15 @@
     "webpack": "^5.0.0"
   },
   "dependencies": {
+    "acorn": "^8.7.0",
+    "acorn-walk": "^8.2.0",
     "camelcase": "^6.3.0",
+    "estree-walker": "^3.0.1",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.2",
+    "@types/estree": "^0.0.51",
     "css-loader": "^6.7.1",
     "magic-string": "^0.26.1",
     "prettier": "^2.6.2",

@@ -34,22 +34,10 @@ const compiler = webpack({
             exclude: /[\\/]node_modules[\\/]/,
             use: [
               {
-                loader: require.resolve('./loader.js'),
-                options: {
-                  type: 'style'
-                }
+                loader: 'style-loader'
               },
               {
-                loader: 'style-loader',
-                options: {
-                  esModule: true
-                }
-              },
-              {
-                loader: require.resolve('./loader.js'),
-                options: {
-                  type: 'css'
-                }
+                loader: require.resolve('./loader.js')
               },
               {
                 loader: 'css-loader',
@@ -57,7 +45,7 @@ const compiler = webpack({
                   esModule: true,
                   modules: {
                     auto: true,
-                    namedExport: true,
+                    namedExport: false,
                     localIdentName: '[local]-[hash:8]',
                     exportLocalsConvention: 'camelCaseOnly'
                   }

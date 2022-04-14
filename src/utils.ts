@@ -3,32 +3,32 @@
  */
 
 import path from 'path';
+import { parse } from 'acorn';
 import camelCase from 'camelcase';
+import { asyncWalk } from 'estree-walker';
+import { AssignmentExpression } from 'estree';
 
 // const KEY_REGEX = /(["'])([^"'\\/;()\n]+)\1\s*:/g;
 // const NAMED_KEY_REGEX = /export\s+(var|let|const)\s+(\w+)\s+=/g;
 
-export function getCssModuleKeys(content: string | Buffer): string[] {
+export function getCssModuleKeys(content: string | Buffer): [Record<string, string>, boolean] {
   if (Buffer.isBuffer(content)) {
     content = content.toString('utf-8');
   }
 
-  // let isNamedExport = false;
-  // // check v4 / v5
-  // let from = content.indexOf('___CSS_LOADER_EXPORT___.locals = {');
+  let isNamedExport = false;
 
-  let match: string[] | null;
+  const ast = parse(content, {
+    sourceType: 'module',
+    ecmaVersion: 'latest'
+  });
+  const result: Record<string, string> = {};
 
-  const keyRegex = /"([^"\n]+)":/g;
-  const cssModuleKeys: string[] = [];
+  asyncWalk(ast, {
+    async enter(node, parent) {}
+  });
 
-  while ((match = keyRegex.exec(content))) {
-    if (!cssModuleKeys.includes(match[1])) {
-      cssModuleKeys.push(match[1]);
-    }
-  }
-
-  return cssModuleKeys;
+  return [result, isNamedExport];
 }
 
 export function filenameToPascalCase(filename: string): string {
