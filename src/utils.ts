@@ -3,8 +3,8 @@
  */
 
 import path from 'path';
-import { parse } from 'acorn';
 import camelCase from 'camelcase';
+import { parseSync } from '@swc/core';
 import { asyncWalk } from 'estree-walker';
 import { AssignmentExpression } from 'estree';
 
@@ -18,10 +18,12 @@ export function getCssModuleKeys(content: string | Buffer): [Record<string, stri
 
   let isNamedExport = false;
 
-  const ast = parse(content, {
-    sourceType: 'module',
-    ecmaVersion: 'latest'
+  const ast = parseSync(content, {
+    comments: false,
+    target: 'es2022',
+    syntax: 'ecmascript'
   });
+
   const result: Record<string, string> = {};
 
   asyncWalk(ast, {

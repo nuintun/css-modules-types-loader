@@ -46,6 +46,7 @@
     "webpack": "^5.0.0"
   },
   "dependencies": {
+    "@swc/core": "^1.2.165",
     "acorn": "^8.7.0",
     "acorn-walk": "^8.2.0",
     "camelcase": "^6.3.0",
