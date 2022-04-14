@@ -46,11 +46,10 @@
     "webpack": "^5.0.0"
   },
   "dependencies": {
-    "@swc/core": "^1.2.165",
     "acorn": "^8.7.0",
     "acorn-walk": "^8.2.0",
     "camelcase": "^6.3.0",
-    "estree-walker": "^3.0.1",
+    "threads": "^1.7.0",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
