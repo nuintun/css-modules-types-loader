@@ -12,25 +12,9 @@ import typescript from '@rollup/plugin-typescript';
  * @param development
  */
 export default function rollup(esnext) {
+  const external = ['fs', 'path', 'acorn', 'tslib', 'acorn-walk', 'threads'];
+
   return [
-    {
-      input: 'src/generate/generate.ts',
-      preserveModules: true,
-      output: {
-        interop: false,
-        exports: 'auto',
-        esModule: false,
-        format: esnext ? 'esm' : 'cjs',
-        dir: esnext ? 'esm/generate' : 'cjs/generate'
-      },
-      plugins: [typescript(), treeShake()],
-      onwarn(error, warn) {
-        if (error.code !== 'CIRCULAR_DEPENDENCY') {
-          warn(error);
-        }
-      },
-      external: ['fs', 'path', 'acorn', 'tslib', 'acorn-walk', 'threads']
-    },
     {
       input: 'src/index.ts',
       preserveModules: true,
@@ -47,7 +31,25 @@ export default function rollup(esnext) {
           warn(error);
         }
       },
-      external: ['fs', 'path', 'acorn', 'tslib', 'acorn-walk', 'threads', resolve('package.json')]
+      external: [...external, resolve('package.json')]
+    },
+    {
+      input: 'src/generate/generate.ts',
+      preserveModules: true,
+      output: {
+        interop: false,
+        exports: 'auto',
+        esModule: false,
+        format: esnext ? 'esm' : 'cjs',
+        dir: esnext ? 'esm/generate' : 'cjs/generate'
+      },
+      plugins: [typescript(), treeShake()],
+      onwarn(error, warn) {
+        if (error.code !== 'CIRCULAR_DEPENDENCY') {
+          warn(error);
+        }
+      },
+      external: [...external]
     }
   ];
 }

@@ -2,7 +2,9 @@
   "name": "css-modules-types-loader",
   "version": "0.0.0",
   "description": "A webpack loader that dynamically generates TypeScript typings for CSS modules from css-loader.",
-  "main": "index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "typings": "typings/index.d.ts",
   "files": [
     "cjs",
     "esm",
