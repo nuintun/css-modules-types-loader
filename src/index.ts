@@ -11,7 +11,7 @@ export { Options };
 
 const initialized = Symbol(pkg.name);
 
-export default (async function loader(content) {
+export default (function loader(content) {
   if (this.cacheable) {
     this.cacheable(true);
   }
