@@ -3,6 +3,7 @@
  */
 
 import { parse } from 'acorn';
+import { writeFile } from 'fs';
 import { expose } from 'threads';
 
 export interface Options {
@@ -22,5 +23,9 @@ expose(function generate(path, content, options): void {
     ecmaVersion: 'latest'
   });
 
-  console.log(path, ast, options);
+  writeFile(path, JSON.stringify(ast, null, 2) + '\n\n' + JSON.stringify(options, null, 2), error => {
+    if (error) {
+      console.error(error);
+    }
+  });
 } as Generate);
