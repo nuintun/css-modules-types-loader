@@ -48,11 +48,11 @@
   "dependencies": {
     "acorn": "^8.7.0",
     "acorn-walk": "^8.2.0",
-    "camelcase": "^6.3.0",
     "threads": "^1.7.0",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-typescript": "^8.3.2",
     "@types/estree": "^0.0.51",
     "css-loader": "^6.7.1",

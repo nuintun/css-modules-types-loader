@@ -19,14 +19,6 @@ export default {
       enum: ['prettier', 'none'],
       description: 'Formatter: none or prettier (require prettier installed). Defaults to prettier if prettier installed.'
     },
-    disableLocalsExport: {
-      type: 'boolean',
-      description: 'Disable the use of locals export. Defaults to `false`.'
-    },
-    verifyOnly: {
-      type: 'boolean',
-      description: 'Validate `*.d.ts` files and fail if an update is needed (useful in CI). Defaults to `false`.'
-    },
     prettierConfigFile: {
       type: 'string',
       description: 'Path to prettier config file.'

@@ -37,7 +37,7 @@ const compiler = webpack({
                 loader: 'style-loader'
               },
               {
-                loader: require.resolve('./loader.js')
+                loader: require.resolve('../cjs')
               },
               {
                 loader: 'css-loader',

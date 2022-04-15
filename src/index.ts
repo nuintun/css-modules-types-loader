@@ -2,29 +2,29 @@
  * @module index
  */
 
-// https://github.com/Megaputer/dts-css-modules-loader
-// https://github.com/kagawagao/css-modules-typings-loader
-
 import schema from './schema';
+import pkg from '../package.json';
 import { LoaderDefinitionFunction } from 'webpack';
+import { generate, Options, terminate } from './generate';
 
-interface Options {
-  eol?: string;
-  banner?: string;
-  verifyOnly?: boolean;
-  prettierConfigFile?: string;
-  disableLocalsExport?: boolean;
-  formatter?: 'none' | 'prettier';
-}
+export { Options };
 
 export default (async function loader(content) {
   if (this.cacheable) {
     this.cacheable();
   }
 
+  const { _compiler: compiler } = this;
   const options = this.getOptions(schema);
 
-  console.log(options);
+  generate(`${this.resourcePath}.d.ts`, content, options);
+
+  if (compiler && !compiler.watchMode) {
+    compiler.hooks.done.tapAsync(pkg.name, (_stats, next) => {
+      terminate();
+      next();
+    });
+  }
 
   return content;
 } as LoaderDefinitionFunction<Options>);
