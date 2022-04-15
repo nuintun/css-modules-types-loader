@@ -2,9 +2,8 @@
  * @module generate
  */
 
-import { parse } from 'acorn';
-import { writeFile } from 'fs';
 import { expose } from 'threads';
+import { generateTypings, writeFile } from './utils';
 
 export interface Options {
   eol?: string;
@@ -14,18 +13,9 @@ export interface Options {
 }
 
 export interface Generate {
-  (path: string, content: string, options?: Options): void;
+  (path: string, content: string, options?: Options): Promise<void>;
 }
 
-expose(function generate(path, content, options): void {
-  const ast = parse(content, {
-    sourceType: 'module',
-    ecmaVersion: 'latest'
-  });
-
-  writeFile(path, JSON.stringify(ast, null, 2) + '\n\n' + JSON.stringify(options, null, 2), error => {
-    if (error) {
-      console.error(error);
-    }
-  });
+expose(function generate(path, content, options = {}) {
+  return writeFile(path, generateTypings(content, options.banner, options.eol));
 } as Generate);

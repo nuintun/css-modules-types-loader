@@ -1,3 +1,3 @@
 import styles from './index.module.css';
 
-console.log(styles.main);
+console.log(styles);

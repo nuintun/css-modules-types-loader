@@ -1,6 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const banner = `/**
+ * @module css-modules-typings
+ */`;
+
 const compiler = webpack({
   name: 'react',
   mode: 'development',
@@ -37,7 +41,10 @@ const compiler = webpack({
                 loader: 'style-loader'
               },
               {
-                loader: require.resolve('../cjs')
+                loader: require.resolve('../cjs'),
+                options: {
+                  banner
+                }
               },
               {
                 loader: 'css-loader',

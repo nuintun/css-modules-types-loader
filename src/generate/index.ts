@@ -2,21 +2,23 @@
  * @module index
  */
 
-import { Generate } from './generate';
 import { Pool, spawn, Worker } from 'threads';
+import { Generate, Options } from './generate';
 
-export { Options } from './generate';
+export { Options };
 
 const pool = Pool(() => {
   return spawn<Generate>(new Worker('./generate'));
 });
 
-export const terminate = (force?: boolean): void => {
-  pool.terminate(force);
-};
+export async function terminate(force?: boolean): Promise<void> {
+  return pool.terminate(force);
+}
 
-export const generate: Generate = (path, content, options) => {
+export async function generate(path: string, content: string | Buffer, options?: Options): Promise<void> {
   pool.queue(async generate => {
-    await generate(path, content, options);
+    await generate(path, content.toString(), options);
   });
-};
+
+  await pool.completed();
+}

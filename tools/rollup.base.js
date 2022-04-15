@@ -12,7 +12,19 @@ import typescript from '@rollup/plugin-typescript';
  * @param development
  */
 export default function rollup(esnext) {
-  const external = ['fs', 'path', 'acorn', 'tslib', 'acorn-walk', 'threads'];
+  const external = [
+    'fs',
+    'os',
+    'util',
+    'path',
+    'acorn',
+    'tslib',
+    'estree',
+    'threads',
+    'prettier',
+    'acorn-walk',
+    resolve('package.json')
+  ];
 
   return [
     {
@@ -22,16 +34,17 @@ export default function rollup(esnext) {
         interop: false,
         exports: 'auto',
         esModule: false,
+        preferConst: true,
         dir: esnext ? 'esm' : 'cjs',
         format: esnext ? 'esm' : 'cjs'
       },
+      external,
       plugins: [typescript(), treeShake()],
       onwarn(error, warn) {
         if (error.code !== 'CIRCULAR_DEPENDENCY') {
           warn(error);
         }
-      },
-      external: [...external, resolve('package.json')]
+      }
     },
     {
       input: 'src/generate/generate.ts',
@@ -40,16 +53,17 @@ export default function rollup(esnext) {
         interop: false,
         exports: 'auto',
         esModule: false,
+        preferConst: true,
         format: esnext ? 'esm' : 'cjs',
         dir: esnext ? 'esm/generate' : 'cjs/generate'
       },
+      external,
       plugins: [typescript(), treeShake()],
       onwarn(error, warn) {
         if (error.code !== 'CIRCULAR_DEPENDENCY') {
           warn(error);
         }
-      },
-      external: [...external]
+      }
     }
   ];
 }
