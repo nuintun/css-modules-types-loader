@@ -1,49 +1,31 @@
 const fs = require('fs');
 const path = require('path');
-const acorn = require('acorn');
-const walk = require('acorn-walk');
+const threads = require('threads');
+
+const thread = threads.Pool(() => threads.spawn(new threads.Worker('./worker')));
 
 module.exports = async function (content) {
-  const ast = acorn.parse(content, {
-    sourceType: 'module',
-    ecmaVersion: 'latest'
+  thread.queue(make => {
+    make(content).then(styles => {
+      console.log(styles);
+    });
   });
-
-  const styles = {};
-  const simpleWalk = walk.simple;
-
-  simpleWalk(ast, {
-    ExpressionStatement(node) {
-      simpleWalk(node, {
-        AssignmentExpression(node) {
-          if (node.left.property.name === 'locals') {
-            simpleWalk(node, {
-              Property(node) {
-                styles[node.key.value] = node.value.value;
-              }
-            });
-          }
-        }
-      });
-    },
-    ExportNamedDeclaration(node) {
-      simpleWalk(node, {
-        VariableDeclarator(node) {
-          styles[node.id.name] = node.init.value;
-        }
-      });
-    }
-  });
-
-  console.log('\n----------------------------------------------------------------');
-  console.log(styles);
-  console.log('----------------------------------------------------------------');
 
   fs.writeFile(path.resolve(`tests/dist/css.js`), content, error => {
     if (error) {
       return console.error(error);
     }
   });
+
+  const { _compiler: compiler } = this;
+
+  if (compiler && !compiler.watchMode) {
+    compiler.hooks.done.tapAsync('css-modules-types-loader', (_stats, next) => {
+      thread.terminate(true);
+
+      next();
+    });
+  }
 
   return content;
 };
