@@ -8,7 +8,6 @@ import { generateTypings, writeFile } from './utils';
 export interface Options {
   eol?: string;
   banner?: string;
-  prettierConfigFile?: string;
   formatter?: 'none' | 'prettier';
 }
 
