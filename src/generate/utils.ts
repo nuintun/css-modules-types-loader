@@ -9,9 +9,17 @@ import { promisify } from 'util';
 import { simple } from 'acorn-walk';
 import { Identifier, Literal } from 'estree';
 
+export const rm = promisify(fs.rm);
+
 export const writeFile = promisify(fs.writeFile);
 
 export type Styles = [key: string, value: string][];
+
+export async function removeFile(path: string): Promise<void> {
+  if (fs.existsSync(path)) {
+    await rm(path);
+  }
+}
 
 export function isString(value: unknown): value is string {
   return Object.prototype.toString.call(value) === '[object String]';
@@ -71,11 +79,12 @@ export function parse(content: string): [styles: Styles, named: boolean] {
   return [styles, named];
 }
 
-export function generateTypings(content: string, banner?: string, eol: string = EOL): string {
+export function generateTypings(content: string, banner?: string, eol: string = EOL): string | null {
   const [styles, named] = parse(content);
-  const typings: string[] = banner ? [banner, ''] : [];
 
-  if (styles.length) {
+  if (styles.length > 0) {
+    const typings: string[] = banner ? [banner, ''] : [];
+
     if (named) {
       for (const [key, value] of styles) {
         typings.push(`export const ${key}: ${JSON.stringify(value)};`);
@@ -89,7 +98,9 @@ export function generateTypings(content: string, banner?: string, eol: string = 
 
       typings.push('};', '', 'export default styles;');
     }
+
+    return typings.join(eol);
   }
 
-  return typings.join(eol);
+  return null;
 }

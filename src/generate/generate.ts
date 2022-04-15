@@ -3,7 +3,7 @@
  */
 
 import { expose } from 'threads';
-import { generateTypings, writeFile } from './utils';
+import { generateTypings, removeFile, writeFile } from './utils';
 
 export interface Options {
   eol?: string;
@@ -15,5 +15,11 @@ export interface Generate {
 }
 
 expose(async function generate(path, content, options = {}) {
-  return writeFile(path, generateTypings(content, options.banner, options.eol));
+  const typings = generateTypings(content, options.banner, options.eol);
+
+  if (typings) {
+    return writeFile(path, typings);
+  } else {
+    return removeFile(path);
+  }
 } as Generate);
