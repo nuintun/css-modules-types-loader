@@ -24,13 +24,15 @@ export default (function loader(content) {
     logger.error(error.message);
   });
 
-  if (compiler && !compiler.watchMode) {
+  if (compiler) {
     if (!compiler[initialized]) {
       compiler[initialized] = true;
 
-      compiler.hooks.done.tapAsync(pkg.name, (_stats, next) => {
-        terminate().then(() => next(), next);
-      });
+      if (compiler.watchMode) {
+        compiler.hooks.watchClose.tap(pkg.name, () => terminate());
+      } else {
+        compiler.hooks.done.tapPromise(pkg.name, () => terminate());
+      }
     }
   }
 
