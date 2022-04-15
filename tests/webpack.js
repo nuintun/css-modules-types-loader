@@ -10,7 +10,7 @@ const compiler = webpack({
   mode: 'development',
   target: ['web', 'es5'],
   context: path.resolve('src'),
-  entry: path.resolve('tests/index.js'),
+  entry: path.resolve('tests/src/index.js'),
   output: {
     publicPath: '/dist/',
     filename: `[name].js`,

@@ -11,10 +11,6 @@ export default {
       type: 'string',
       description: 'To add a banner prefix to each `*.d.ts` file.'
     },
-    formatter: {
-      enum: ['prettier', 'none'],
-      description: 'Formatter: none or prettier (require prettier installed). Defaults to prettier if prettier installed.'
-    },
     eol: {
       type: 'string',
       description: 'Newline character in `*.d.ts` file. Use OS default. This option may be overridden by formatter option.'
