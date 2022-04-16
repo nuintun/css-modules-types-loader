@@ -7,7 +7,7 @@ import { EOL } from 'os';
 import acorn from 'acorn';
 import { promisify } from 'util';
 import { simple } from 'acorn-walk';
-import { Identifier, Literal } from 'estree';
+import { Identifier, Literal, Node } from 'estree';
 
 export const rm = promisify(fs.rm);
 
@@ -23,6 +23,29 @@ export async function removeFile(path: string): Promise<void> {
 
 export function isString(value: unknown): value is string {
   return Object.prototype.toString.call(value) === '[object String]';
+}
+
+export function collect(styles: Styles, left: Node, right: Node): void {
+  if (right.type === 'Literal') {
+    const value = right.value;
+
+    if (isString(value)) {
+      let key: Identifier['name'] | Literal['value'];
+
+      switch (left.type) {
+        case 'Identifier':
+          key = left.name;
+          break;
+        case 'Literal':
+          key = left.value;
+          break;
+      }
+
+      if (isString(key)) {
+        styles.push([key, value]);
+      }
+    }
+  }
 }
 
 export function parse(content: string): [styles: Styles, named: boolean] {
@@ -45,13 +68,8 @@ export function parse(content: string): [styles: Styles, named: boolean] {
             if (property.type === 'Identifier') {
               if (property.name === 'locals') {
                 simple(node, {
-                  Property({ key: left, value: right }) {
-                    const { value: key } = left as Literal;
-                    const { value: value } = right as Literal;
-
-                    if (isString(key) && isString(value)) {
-                      styles.push([key, value]);
-                    }
+                  Property({ key, value }) {
+                    collect(styles, key, value);
                   }
                 });
               }
@@ -65,11 +83,8 @@ export function parse(content: string): [styles: Styles, named: boolean] {
 
       simple(node, {
         VariableDeclarator({ id, init }) {
-          const { name: key } = id as Identifier;
-          const { value } = init as Literal;
-
-          if (isString(key) && isString(value)) {
-            styles.push([key, value]);
+          if (init) {
+            collect(styles, id, init);
           }
         }
       });
