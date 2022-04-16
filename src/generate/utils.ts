@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 import { EOL } from 'os';
-import acorn from 'acorn';
+import { parse } from 'acorn';
 import { promisify } from 'util';
 import { simple } from 'acorn-walk';
 import { Identifier, Literal, Node } from 'estree';
@@ -48,12 +48,12 @@ export function collect(styles: Styles, left: Node, right: Node): void {
   }
 }
 
-export function parse(content: string): [styles: Styles, named: boolean] {
+export function parseStyles(content: string): [styles: Styles, named: boolean] {
   let named = false;
 
   const styles: Styles = [];
 
-  const ast = acorn.parse(content, {
+  const ast = parse(content, {
     sourceType: 'module',
     ecmaVersion: 'latest'
   });
@@ -95,7 +95,7 @@ export function parse(content: string): [styles: Styles, named: boolean] {
 }
 
 export function generateTypings(content: string, banner?: string, eol: string = EOL): string | null {
-  const [styles, named] = parse(content);
+  const [styles, named] = parseStyles(content);
 
   if (styles.length > 0) {
     const typings: string[] = banner ? [banner, ''] : [];
