@@ -1,6 +1,6 @@
 {
   "name": "css-modules-types-loader",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A webpack loader that dynamically generates TypeScript typings for CSS modules from css-loader.",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -28,16 +28,14 @@
     "url": "git+https://github.com/nuintun/css-modules-types-loader.git"
   },
   "keywords": [
-    "Webpack",
-    "Typescript",
-    "TypeScript",
-    "CSSModules",
-    "CSS Modules",
-    "Webpack loader",
-    "CSS Modules typings",
-    "typescript webpack typings",
-    "css modules webpack typings",
-    "Webpack css module typings loader"
+    "webpack",
+    "typescript",
+    "css modules",
+    "webpack loader",
+    "css modules types",
+    "css modules typings",
+    "css module types loader",
+    "css module typings loader"
   ],
   "author": "nuintun",
   "license": "MIT",
@@ -52,7 +50,7 @@
     "acorn": "^8.7.0",
     "acorn-walk": "^8.2.0",
     "threads": "^1.7.0",
-    "tslib": "^2.3.1"
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
