@@ -2,10 +2,10 @@
  * @module index
  */
 
-import schema from './schema';
 import pkg from '../package.json';
+import schema, { Options } from './schema';
+import { generate, terminate } from './generate';
 import { LoaderDefinitionFunction } from 'webpack';
-import { generate, Options, terminate } from './generate';
 
 export { Options };
 

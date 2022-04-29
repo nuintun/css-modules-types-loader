@@ -3,12 +3,8 @@
  */
 
 import { expose } from 'threads';
+import { Options } from '../schema';
 import { generateTypings, removeFile, writeFile } from './utils';
-
-export interface Options {
-  eol?: string;
-  banner?: string;
-}
 
 export interface Generate {
   (path: string, content: string, options?: Options): Promise<void>;

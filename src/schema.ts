@@ -4,6 +4,11 @@
 
 import { LoaderContext } from 'webpack';
 
+export interface Options {
+  eol?: string;
+  banner?: string;
+}
+
 export default {
   type: 'object',
   properties: {
@@ -17,4 +22,4 @@ export default {
     }
   },
   additionalProperties: false
-} as Parameters<LoaderContext<unknown>['getOptions']>[0];
+} as Parameters<LoaderContext<Options>['getOptions']>[0];

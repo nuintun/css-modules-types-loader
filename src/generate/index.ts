@@ -2,10 +2,9 @@
  * @module index
  */
 
+import { Options } from '../schema';
+import { Generate } from './generate';
 import { Pool, spawn, Worker } from 'threads';
-import { Generate, Options } from './generate';
-
-export { Options };
 
 const pool = Pool(() => {
   return spawn<Generate>(new Worker('./generate'));
