@@ -106,4 +106,5 @@ dist
 # Build dist
 /cjs/
 /esm/
+/types/
 /tests/**/*.module.css.d.ts
