@@ -48,7 +48,9 @@ export default function rollup(esnext) {
         esModule: false,
         preferConst: true,
         dir: esnext ? 'esm' : 'cjs',
-        format: esnext ? 'esm' : 'cjs'
+        format: esnext ? 'esm' : 'cjs',
+        entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
+        chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
       },
       external,
       plugins: [typescript(), treeShake()],
@@ -68,7 +70,9 @@ export default function rollup(esnext) {
         esModule: false,
         preferConst: true,
         format: esnext ? 'esm' : 'cjs',
-        dir: esnext ? 'esm/generate' : 'cjs/generate'
+        dir: esnext ? 'esm/generate' : 'cjs/generate',
+        entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
+        chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
       },
       external,
       plugins: [typescript(), treeShake()],
