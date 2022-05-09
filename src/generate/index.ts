@@ -7,7 +7,7 @@ import { Generate } from './generate';
 import { Pool, spawn, Worker } from 'threads';
 
 const pool = Pool(() => {
-  return spawn<Generate>(new Worker('./generate'));
+  return spawn<Generate>(new Worker(__WORKER__));
 });
 
 export async function terminate(force?: boolean): Promise<void> {

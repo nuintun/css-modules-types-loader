@@ -5,6 +5,7 @@
 import { resolve } from 'path';
 import pkg from '../package.json';
 import treeShake from './plugins/tree-shake';
+import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 
 const banner = `/**
@@ -16,6 +17,19 @@ const banner = `/**
   * @see ${pkg.homepage}
   */
  `;
+
+/**
+ * @function env
+ * @param development
+ */
+function env(esnext) {
+  return replace({
+    preventAssignment: true,
+    values: {
+      __WORKER__: `'./generate.${esnext ? 'js' : 'cjs'}'`
+    }
+  });
+}
 
 /**
  * @function rollup
@@ -53,7 +67,7 @@ export default function rollup(esnext) {
         chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
       },
       external,
-      plugins: [typescript(), treeShake()],
+      plugins: [env(esnext), typescript(), treeShake()],
       onwarn(error, warn) {
         if (error.code !== 'CIRCULAR_DEPENDENCY') {
           warn(error);
@@ -75,7 +89,7 @@ export default function rollup(esnext) {
         chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
       },
       external,
-      plugins: [typescript(), treeShake()],
+      plugins: [env(esnext), typescript(), treeShake()],
       onwarn(error, warn) {
         if (error.code !== 'CIRCULAR_DEPENDENCY') {
           warn(error);
