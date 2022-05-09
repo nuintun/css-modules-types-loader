@@ -26,7 +26,8 @@ function env(esnext) {
   return replace({
     preventAssignment: true,
     values: {
-      __WORKER__: `'./generate.${esnext ? 'js' : 'cjs'}'`
+      __NAME__: JSON.stringify(pkg.name),
+      __WORKER__: JSON.stringify(`./generate.${esnext ? 'js' : 'cjs'}`)
     }
   });
 }
