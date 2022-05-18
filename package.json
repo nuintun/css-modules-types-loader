@@ -20,11 +20,11 @@
   "scripts": {
     "lint": "tsc --noEmit",
     "clean": "node tools/clean.js",
+    "format": "prettier --write .",
     "test": "node tests/webpack.js",
     "prepublishOnly": "npm run build",
     "build:cjs": "rollup -c tools/rollup.cjs.js",
     "build:esm": "rollup -c tools/rollup.esm.js",
-    "format": "prettier --write tools src cjs esm tests types",
     "build": "npm run clean && npm run build:main && npm run format",
     "build:main": "npm run build:cjs && npm run build:esm && npm run build:types",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir types"
@@ -66,7 +66,7 @@
     "magic-string": "^0.26.2",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.72.1",
+    "rollup": "^2.73.0",
     "style-loader": "^3.3.1",
     "typescript": "^4.6.4",
     "webpack": "^5.72.1"
