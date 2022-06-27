@@ -61,7 +61,7 @@
   "devDependencies": {
     "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-typescript": "^8.3.3",
-    "@types/estree": "^0.0.51",
+    "@types/estree": "^0.0.52",
     "@types/node": "^18.0.0",
     "css-loader": "^6.7.1",
     "magic-string": "^0.26.2",
