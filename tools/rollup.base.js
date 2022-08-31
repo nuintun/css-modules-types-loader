@@ -4,8 +4,8 @@
 
 import { resolve } from 'path';
 import pkg from '../package.json';
-import treeShake from './plugins/tree-shake';
 import replace from '@rollup/plugin-replace';
+import treeShake from './plugins/tree-shake';
 import typescript from '@rollup/plugin-typescript';
 
 const banner = `/**
