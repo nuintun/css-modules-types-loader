@@ -59,10 +59,10 @@
     "tslib": "^2.4.0"
   },
   "devDependencies": {
-    "@rollup/plugin-replace": "^4.0.0",
-    "@rollup/plugin-typescript": "^8.5.0",
+    "@rollup/plugin-replace": "^5.0.0",
+    "@rollup/plugin-typescript": "^9.0.1",
     "@types/estree": "^1.0.0",
-    "@types/node": "^18.8.3",
+    "@types/node": "^18.8.4",
     "css-loader": "^6.7.1",
     "magic-string": "^0.26.7",
     "prettier": "^2.7.1",
