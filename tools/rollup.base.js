@@ -3,10 +3,12 @@
  */
 
 import { resolve } from 'path';
-import pkg from '../package.json';
+import { createRequire } from 'module';
 import replace from '@rollup/plugin-replace';
-import treeShake from './plugins/tree-shake';
+import treeShake from './plugins/tree-shake.js';
 import typescript from '@rollup/plugin-typescript';
+
+const pkg = createRequire(import.meta.url)('../package.json');
 
 const banner = `/**
   * @package ${pkg.name}
@@ -55,15 +57,15 @@ export default function rollup(esnext) {
   return [
     {
       input: 'src/index.ts',
-      preserveModules: true,
       output: {
         banner,
-        interop: false,
+        interop: 'auto',
         exports: 'auto',
         esModule: false,
-        preferConst: true,
+        preserveModules: true,
         dir: esnext ? 'esm' : 'cjs',
         format: esnext ? 'esm' : 'cjs',
+        generatedCode: { constBindings: true },
         entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
         chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
       },
@@ -77,14 +79,14 @@ export default function rollup(esnext) {
     },
     {
       input: 'src/generate/generate.ts',
-      preserveModules: true,
       output: {
         banner,
-        interop: false,
+        interop: 'auto',
         exports: 'auto',
         esModule: false,
-        preferConst: true,
+        preserveModules: true,
         format: esnext ? 'esm' : 'cjs',
+        generatedCode: { constBindings: true },
         dir: esnext ? 'esm/generate' : 'cjs/generate',
         entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
         chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
