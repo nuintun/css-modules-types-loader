@@ -43,7 +43,10 @@
     "css module types loader",
     "css module typings loader"
   ],
-  "author": "nuintun",
+  "author": {
+    "name": "nuintun",
+    "email": "nuintun@qq.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nuintun/css-modules-types-loader/issues"
