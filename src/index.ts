@@ -17,6 +17,7 @@ export default (function loader(content) {
     this.cacheable(true);
   }
 
+  const callback = this.async();
   const logger = this.getLogger(name);
   const options = this.getOptions(schema);
 
@@ -38,5 +39,5 @@ export default (function loader(content) {
     }
   }
 
-  return content;
+  callback(null, content);
 } as LoaderDefinitionFunction<Options>);
