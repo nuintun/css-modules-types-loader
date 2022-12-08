@@ -2,7 +2,8 @@
  * @module index
  */
 
-import schema, { Options } from './schema';
+import schema from './schema';
+import { Options } from './interface';
 import { generate, terminate } from './generate';
 import { LoaderDefinitionFunction } from 'webpack';
 

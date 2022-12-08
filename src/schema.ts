@@ -2,14 +2,9 @@
  * @module schema
  */
 
-import { LoaderContext } from 'webpack';
+import { Schema } from './interface';
 
-export interface Options {
-  eol?: string;
-  banner?: string;
-}
-
-export default {
+const schema: Schema = {
   type: 'object',
   properties: {
     banner: {
@@ -22,4 +17,6 @@ export default {
     }
   },
   additionalProperties: false
-} as Parameters<LoaderContext<Options>['getOptions']>[0];
+};
+
+export default schema;
