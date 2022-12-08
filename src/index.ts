@@ -13,10 +13,6 @@ const name = __NAME__;
 const initialized = Symbol(name);
 
 export default (function loader(content, sourceMap, additionalData) {
-  if (this.cacheable) {
-    this.cacheable(true);
-  }
-
   const callback = this.async();
 
   callback(null, content, sourceMap, additionalData);
