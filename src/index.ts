@@ -12,12 +12,15 @@ export { Options };
 const name = __NAME__;
 const initialized = Symbol(name);
 
-export default (function loader(content) {
+export default (function loader(content, sourceMap, additionalData) {
   if (this.cacheable) {
     this.cacheable(true);
   }
 
   const callback = this.async();
+
+  callback(null, content, sourceMap, additionalData);
+
   const logger = this.getLogger(name);
   const options = this.getOptions(schema);
 
@@ -38,6 +41,4 @@ export default (function loader(content) {
       }
     }
   }
-
-  callback(null, content);
 } as LoaderDefinitionFunction<Options>);
