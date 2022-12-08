@@ -2,7 +2,6 @@
  * @module rollup.base
  */
 
-import { resolve } from 'path';
 import { createRequire } from 'module';
 import replace from '@rollup/plugin-replace';
 import treeShake from './plugins/tree-shake.js';
@@ -40,19 +39,7 @@ function env(esnext) {
  * @param development
  */
 export default function rollup(esnext) {
-  const external = [
-    'fs',
-    'os',
-    'util',
-    'path',
-    'acorn',
-    'tslib',
-    'estree',
-    'threads',
-    'prettier',
-    'acorn-walk',
-    resolve('package.json')
-  ];
+  const external = ['fs', 'os', 'util', 'acorn', 'tslib', 'estree', 'threads', 'webpack', 'acorn-walk'];
 
   return [
     {

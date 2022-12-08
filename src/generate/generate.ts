@@ -3,7 +3,7 @@
  */
 
 import { expose } from 'threads';
-import { Options } from '../schema';
+import { Options } from '../interface';
 import { generateTypings, removeFile, writeFile } from './utils';
 
 export interface Generate {
