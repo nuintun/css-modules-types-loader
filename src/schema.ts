@@ -4,7 +4,7 @@
 
 import { Schema } from './interface';
 
-export default {
+export const schema: Schema = {
   type: 'object',
   properties: {
     banner: {
@@ -17,4 +17,4 @@ export default {
     }
   },
   additionalProperties: false
-} as Schema;
+};
