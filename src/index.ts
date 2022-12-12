@@ -4,8 +4,8 @@
 
 import { schema } from './schema';
 import { Options } from './interface';
+import { LoaderDefinition } from 'webpack';
 import { generate, terminate } from './generate';
-import { LoaderDefinitionFunction } from 'webpack';
 
 export { Options };
 
@@ -36,4 +36,4 @@ export default (function loader(content, sourceMap, additionalData) {
   generate(`${this.resourcePath}.d.ts`, content, options).catch((error: Error) => {
     logger.error(error.message);
   });
-} as LoaderDefinitionFunction<Options>);
+} as LoaderDefinition<Options>);
