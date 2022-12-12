@@ -14,15 +14,8 @@ const initialized = Symbol(name);
 
 export default (function loader(content, sourceMap, additionalData) {
   const callback = this.async();
-
-  callback(null, content, sourceMap, additionalData);
-
   const logger = this.getLogger(name);
   const options = this.getOptions(schema);
-
-  generate(`${this.resourcePath}.d.ts`, content, options).catch((error: Error) => {
-    logger.error(error.message);
-  });
 
   const { _compiler: compiler } = this;
 
@@ -37,4 +30,10 @@ export default (function loader(content, sourceMap, additionalData) {
       }
     }
   }
+
+  callback(null, content, sourceMap, additionalData);
+
+  generate(`${this.resourcePath}.d.ts`, content, options).catch((error: Error) => {
+    logger.error(error.message);
+  });
 } as LoaderDefinitionFunction<Options>);
