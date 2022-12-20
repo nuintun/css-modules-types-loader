@@ -62,15 +62,15 @@
     "tslib": "^2.4.1"
   },
   "devDependencies": {
-    "@rollup/plugin-replace": "^5.0.1",
+    "@rollup/plugin-replace": "^5.0.2",
     "@rollup/plugin-typescript": "^10.0.1",
     "@types/estree": "^1.0.0",
-    "@types/node": "^18.11.15",
+    "@types/node": "^18.11.17",
     "css-loader": "^6.7.3",
     "magic-string": "^0.27.0",
     "prettier": "^2.8.1",
     "rimraf": "^3.0.2",
-    "rollup": "^3.7.4",
+    "rollup": "^3.7.5",
     "style-loader": "^3.3.1",
     "typescript": "^4.9.4",
     "webpack": "^5.75.0"
