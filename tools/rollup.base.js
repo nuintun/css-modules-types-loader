@@ -37,6 +37,7 @@ function env(esnext) {
  * @function rollup
  * @param esnext
  * @param development
+ * @return {import('rollup').RollupOptions}
  */
 export default function rollup(esnext) {
   const external = ['fs', 'os', 'util', 'acorn', 'tslib', 'estree', 'threads', 'webpack', 'acorn-walk'];
