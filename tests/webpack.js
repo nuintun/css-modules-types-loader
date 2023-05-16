@@ -41,7 +41,7 @@ const compiler = webpack({
                 loader: 'style-loader'
               },
               {
-                loader: '../',
+                loader: 'css-modules-types-loader',
                 options: {
                   banner
                 }
