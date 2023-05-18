@@ -22,7 +22,7 @@ const banner = `/**
 /**
  * @function env
  * @param {boolean} esnext
- * @return {Record<string, string>}
+ * @return {import('rollup').Plugin}
  */
 function env(esnext) {
   return replace({
