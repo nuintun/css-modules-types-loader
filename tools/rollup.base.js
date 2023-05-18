@@ -21,6 +21,8 @@ const banner = `/**
 
 /**
  * @function env
+ * @param {boolean} esnext
+ * @return {Record<string, string>}
  */
 function env(esnext) {
   return replace({
@@ -34,8 +36,8 @@ function env(esnext) {
 
 /**
  * @function rollup
- * @param esnext
- * @return {import('rollup').RollupOptions}
+ * @param {boolean} [esnext]
+ * @return {import('rollup').RollupOptions[]}
  */
 export default function rollup(esnext) {
   const external = ['fs', 'os', 'util', 'acorn', 'tslib', 'estree', 'threads', 'webpack', 'acorn-walk'];
