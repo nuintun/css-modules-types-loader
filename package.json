@@ -1,6 +1,6 @@
 {
   "name": "css-modules-types-loader",
-  "version": "0.3.19",
+  "version": "0.3.20",
   "description": "A webpack loader that dynamically generates TypeScript typings for CSS modules from css-loader.",
   "type": "module",
   "main": "cjs/index.cjs",
@@ -63,7 +63,7 @@
     "@rollup/plugin-replace": "^5.0.2",
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/estree": "^1.0.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.4",
     "css-loader": "^6.8.1",
     "magic-string": "^0.30.1",
     "prettier": "^3.0.0",

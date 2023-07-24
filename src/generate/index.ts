@@ -2,8 +2,8 @@
  * @module index
  */
 
+import { Options } from '/interface';
 import { Generate } from './generate';
-import { Options } from '../interface';
 import { Pool, spawn, Worker } from 'threads';
 
 const pool = Pool(() => {
