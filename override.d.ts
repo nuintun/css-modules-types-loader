@@ -1,5 +1,5 @@
 /**
- * @module overwrite
+ * @module override
  */
 
 import {
@@ -12,8 +12,6 @@ import {
   VariableDeclarator
 } from 'estree';
 import { Compiler as ICompiler } from 'webpack';
-
-declare const __WORKER__: string;
 
 declare module 'webpack' {
   export class Compiler extends ICompiler {

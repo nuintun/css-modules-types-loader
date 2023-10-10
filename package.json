@@ -1,6 +1,6 @@
 {
   "name": "css-modules-types-loader",
-  "version": "0.3.24",
+  "version": "0.3.25",
   "description": "A webpack loader that dynamically generates TypeScript typings for CSS modules from css-loader.",
   "type": "module",
   "main": "cjs/index.cjs",
@@ -16,7 +16,7 @@
     "esm",
     "types",
     "global.d.ts",
-    "overwrite.d.ts"
+    "override.d.ts"
   ],
   "repository": {
     "type": "git",
@@ -63,7 +63,7 @@
     "@rollup/plugin-replace": "^5.0.3",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/estree": "^1.0.2",
-    "@types/node": "^20.8.3",
+    "@types/node": "^20.8.4",
     "css-loader": "^6.8.1",
     "magic-string": "^0.30.4",
     "prettier": "^3.0.3",

@@ -25,7 +25,8 @@
   },
   "include": [
     "src/**/*",
-    "global.d.ts"
+    "global.d.ts",
+    "override.d.ts"
   ],
   "exclude": [
     "node_modules/**/*"
