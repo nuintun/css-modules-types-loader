@@ -63,7 +63,7 @@
     "@rollup/plugin-replace": "^5.0.4",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/estree": "^1.0.3",
-    "@types/node": "^20.8.8",
+    "@types/node": "^20.8.9",
     "css-loader": "^6.8.1",
     "magic-string": "^0.30.5",
     "prettier": "^3.0.3",
