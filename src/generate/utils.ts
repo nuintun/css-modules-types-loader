@@ -15,16 +15,33 @@ export const writeFile = promisify(fs.writeFile);
 
 export type Styles = [key: string, value: string][];
 
+/**
+ * @function removeFile
+ * @description Removes a file from the filesystem if it exists.
+ * @param path The path to the file.
+ */
 export async function removeFile(path: string): Promise<void> {
   if (fs.existsSync(path)) {
     await rm(path);
   }
 }
 
+/**
+ * @function isString
+ * @description Checks if a value is a string.
+ * @param value The value to check.
+ */
 export function isString(value: unknown): value is string {
   return Object.prototype.toString.call(value) === '[object String]';
 }
 
+/**
+ * @function collect
+ * @description Collects styles from the given nodes and adds them to the styles array.
+ * @param styles The array to which the collected styles will be added.
+ * @param left The left node.
+ * @param right The right node.
+ */
 export function collect(styles: Styles, left: Node, right: Node): void {
   if (right.type === 'Literal') {
     const value = right.value;
@@ -48,6 +65,11 @@ export function collect(styles: Styles, left: Node, right: Node): void {
   }
 }
 
+/**
+ * @function parseStyles
+ * @description Parses the styles from the given content.
+ * @param content The content to parse the styles from.
+ */
 export function parseStyles(content: string): [styles: Styles, named: boolean] {
   let named = false;
 
@@ -94,6 +116,13 @@ export function parseStyles(content: string): [styles: Styles, named: boolean] {
   return [styles, named];
 }
 
+/**
+ * @function generateTypings
+ * @description Generate typings for CSS modules.
+ * @param content The CSS content.
+ * @param banner Optional banner string.
+ * @param eol End of line character.
+ */
 export function generateTypings(content: string, banner?: string, eol: string = EOL): string | null {
   const [styles, named] = parseStyles(content);
 
