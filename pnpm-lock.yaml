@@ -9,8 +9,8 @@ dependencies:
     specifier: ^8.11.2
     version: 8.11.2
   acorn-walk:
-    specifier: ^8.3.0
-    version: 8.3.0
+    specifier: ^8.3.1
+    version: 8.3.1
   threads:
     specifier: ^1.7.0
     version: 1.7.0
@@ -24,7 +24,7 @@ devDependencies:
     version: 5.0.5(rollup@4.6.1)
   '@rollup/plugin-typescript':
     specifier: ^11.1.5
-    version: 11.1.5(rollup@4.6.1)(tslib@2.6.2)(typescript@5.3.2)
+    version: 11.1.5(rollup@4.6.1)(tslib@2.6.2)(typescript@5.3.3)
   '@types/estree':
     specifier: ^1.0.5
     version: 1.0.5
@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^1.8.8
     version: 1.8.8
   typescript:
-    specifier: ^5.3.2
-    version: 5.3.2
+    specifier: ^5.3.3
+    version: 5.3.3
   webpack:
     specifier: ^5.89.0
     version: 5.89.0
@@ -152,7 +152,7 @@ packages:
       rollup: 4.6.1
     dev: true
 
-  /@rollup/plugin-typescript@11.1.5(rollup@4.6.1)(tslib@2.6.2)(typescript@5.3.2):
+  /@rollup/plugin-typescript@11.1.5(rollup@4.6.1)(tslib@2.6.2)(typescript@5.3.3):
     resolution: {integrity: sha512-rnMHrGBB0IUEv69Q8/JGRD/n4/n6b3nfpufUu26axhUcboUzv/twfZU8fIBbTOphRAe0v8EyxzeDpKXqGHfyDA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -169,7 +169,7 @@ packages:
       resolve: 1.22.8
       rollup: 4.6.1
       tslib: 2.6.2
-      typescript: 5.3.2
+      typescript: 5.3.3
     dev: true
 
   /@rollup/pluginutils@5.1.0(rollup@4.6.1):
@@ -433,8 +433,8 @@ packages:
       acorn: 8.11.2
     dev: true
 
-  /acorn-walk@8.3.0:
-    resolution: {integrity: sha512-FS7hV565M5l1R08MXqo8odwMTB02C2UqzB17RVgu9EyuYFBqJZ3/ZY97sQD5FewVu1UyDFc1yztUDrAwT0EypA==}
+  /acorn-walk@8.3.1:
+    resolution: {integrity: sha512-TgUZgYvqZprrl7YldZNoa9OciCAyZR+Ejm9eXzKCmjsF5IKp/wgQ7Z/ZpjpGTIUPwrHQIcYeI8qDh4PsEwxMbw==}
     engines: {node: '>=0.4.0'}
     dev: false
 
@@ -523,7 +523,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001566
-      electron-to-chromium: 1.4.601
+      electron-to-chromium: 1.4.606
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
     dev: true
@@ -636,8 +636,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /electron-to-chromium@1.4.601:
-    resolution: {integrity: sha512-SpwUMDWe9tQu8JX5QCO1+p/hChAi9AE9UpoC3rcHVc+gdCGlbT3SGb5I1klgb952HRIyvt9wZhSz9bNBYz9swA==}
+  /electron-to-chromium@1.4.606:
+    resolution: {integrity: sha512-Zdv0XuhfyWZUsQ5Uq59d43ZmZOdoGZNWjeN4WCxxlQaP8crAWdnWcTxfHKcaJl6PW2SWpHx6DsxSx7v6KcGCuw==}
     dev: true
 
   /emoji-regex@8.0.0:
@@ -1315,12 +1315,12 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.1
-      terser: 5.24.0
+      terser: 5.25.0
       webpack: 5.89.0
     dev: true
 
-  /terser@5.24.0:
-    resolution: {integrity: sha512-ZpGR4Hy3+wBEzVEnHvstMvqpD/nABNelQn/z2r0fjVWGQsN3bpOLzQlqDxmb4CDZnXq5lpjnQ+mHQLAOpfM5iw==}
+  /terser@5.25.0:
+    resolution: {integrity: sha512-we0I9SIsfvNUMP77zC9HG+MylwYYsGFSBG8qm+13oud2Yh+O104y614FRbyjpxys16jZwot72Fpi827YvGzuqg==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -1373,8 +1373,8 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /typescript@5.3.2:
-    resolution: {integrity: sha512-6l+RyNy7oAHDfxC4FzSJcz9vnjTKxrLpDG5M2Vu4SHRVNg6xzqZp6LYSR9zjqQTu8DU/f5xwxUdADOkbrIX2gQ==}
+  /typescript@5.3.3:
+    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
