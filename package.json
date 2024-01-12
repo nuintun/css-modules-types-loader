@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "acorn": "^8.11.3",
-    "acorn-walk": "^8.3.1",
+    "acorn-walk": "^8.3.2",
     "threads": "^1.7.0",
     "tslib": "^2.6.2"
   },
@@ -63,7 +63,7 @@
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/estree": "^1.0.5",
-    "@types/node": "^20.10.8",
+    "@types/node": "^20.11.0",
     "css-loader": "^6.9.0",
     "magic-string": "^0.30.5",
     "prettier": "^3.1.1",
