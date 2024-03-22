@@ -71,8 +71,8 @@
     "rollup": "^4.13.0",
     "style-loader": "^3.3.4",
     "tsc-alias": "^1.8.8",
-    "typescript": "^5.4.2",
-    "webpack": "^5.90.3"
+    "typescript": "^5.4.3",
+    "webpack": "^5.91.0"
   },
   "peerDependencies": {
     "webpack": "^5.0.0"
