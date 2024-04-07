@@ -4,8 +4,8 @@
 
 import { expose } from 'threads';
 import { Options } from '/interface';
-import { generateTypings } from './utils';
-import { rm, writeFile } from 'fs/promises';
+import { writeFile } from 'fs/promises';
+import { generateTypings, removeFile } from './utils';
 
 /**
  * @function generate
@@ -25,5 +25,5 @@ expose(function generate(path, content, { banner, eol } = {}) {
     return writeFile(path, typings);
   }
 
-  return rm(path);
+  return removeFile(path);
 } as Generate);

@@ -4,10 +4,23 @@
 
 import { EOL } from 'os';
 import { parse } from 'acorn';
+import { existsSync } from 'fs';
+import { rm } from 'fs/promises';
 import { simple } from 'acorn-walk';
 import { Identifier, Literal, Node } from 'estree';
 
 export type Styles = [key: string, value: string][];
+
+/**
+ * @function removeFile
+ * @description Removes a file from the filesystem if it exists.
+ * @param path The path to the file.
+ */
+export async function removeFile(path: string): Promise<void> {
+  if (existsSync(path)) {
+    await rm(path);
+  }
+}
 
 /**
  * @function isString
