@@ -2,29 +2,12 @@
  * @module utils
  */
 
-import fs from 'fs';
 import { EOL } from 'os';
 import { parse } from 'acorn';
-import { promisify } from 'util';
 import { simple } from 'acorn-walk';
 import { Identifier, Literal, Node } from 'estree';
 
-export const rm = promisify(fs.rm);
-
-export const writeFile = promisify(fs.writeFile);
-
 export type Styles = [key: string, value: string][];
-
-/**
- * @function removeFile
- * @description Removes a file from the filesystem if it exists.
- * @param path The path to the file.
- */
-export async function removeFile(path: string): Promise<void> {
-  if (fs.existsSync(path)) {
-    await rm(path);
-  }
-}
 
 /**
  * @function isString

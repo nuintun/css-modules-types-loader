@@ -4,7 +4,8 @@
 
 import { expose } from 'threads';
 import { Options } from '/interface';
-import { generateTypings, removeFile, writeFile } from './utils';
+import { generateTypings } from './utils';
+import { rm, writeFile } from 'fs/promises';
 
 /**
  * @function generate
@@ -17,12 +18,12 @@ export interface Generate {
   (path: string, content: string, options?: Options): Promise<void>;
 }
 
-expose(async function generate(path, content, options = {}) {
-  const typings = generateTypings(content, options.banner, options.eol);
+expose(function generate(path, content, { banner, eol } = {}) {
+  const typings = generateTypings(content, banner, eol);
 
   if (typings) {
     return writeFile(path, typings);
-  } else {
-    return removeFile(path);
   }
+
+  return rm(path);
 } as Generate);
