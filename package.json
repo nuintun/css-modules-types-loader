@@ -17,9 +17,7 @@
   "files": [
     "cjs",
     "esm",
-    "types",
-    "global.d.ts",
-    "override.d.ts"
+    "types"
   ],
   "repository": {
     "type": "git",
