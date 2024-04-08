@@ -13,7 +13,7 @@ export const schema: Schema = {
     },
     eol: {
       type: 'string',
-      description: 'Newline character in `*.d.ts` file. Use OS default.'
+      description: 'Newline character in `*.d.ts` file. Use `\\n` by default.'
     }
   },
   additionalProperties: false

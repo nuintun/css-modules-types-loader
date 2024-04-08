@@ -2,7 +2,6 @@
  * @module utils
  */
 
-import { EOL } from 'os';
 import { parse } from 'acorn';
 import { existsSync } from 'fs';
 import { rm } from 'fs/promises';
@@ -131,7 +130,7 @@ export function parseStyles(content: string): [named: boolean, styles: Mapping, 
  * @param banner Optional banner string.
  * @param eol End of line character.
  */
-export function generateTypings(content: string, banner?: string, eol: string = EOL): string | null {
+export function generateTypings(content: string, banner?: string, eol: string = `\n`): string | null {
   const [named, styles, reexports] = parseStyles(content);
 
   if (styles.size > 0) {
