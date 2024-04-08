@@ -52,7 +52,7 @@ const compiler = webpack({
                   esModule: true,
                   modules: {
                     auto: true,
-                    namedExport: false,
+                    namedExport: true,
                     localIdentName: '[local]-[hash:8]',
                     exportLocalsConvention: 'camelCaseOnly'
                   }

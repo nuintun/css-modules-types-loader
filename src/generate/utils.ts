@@ -9,7 +9,9 @@ import { rm } from 'fs/promises';
 import { simple } from 'acorn-walk';
 import { Identifier, Literal, Node } from 'estree';
 
-export type Styles = [key: string, value: string][];
+type Mapping = Map<string, string>;
+
+type Collector = (key: string, value: string) => void;
 
 /**
  * @function removeFile
@@ -34,11 +36,11 @@ export function isString(value: unknown): value is string {
 /**
  * @function collect
  * @description Collects styles from the given nodes and adds them to the styles array.
- * @param styles The array to which the collected styles will be added.
  * @param left The left node.
  * @param right The right node.
+ * @param collector The collector function.
  */
-export function collect(styles: Styles, left: Node, right: Node): void {
+export function collect(left: Node, right: Node, collector: Collector): void {
   if (right.type === 'Literal') {
     const value = right.value;
 
@@ -55,7 +57,7 @@ export function collect(styles: Styles, left: Node, right: Node): void {
       }
 
       if (isString(key)) {
-        styles.push([key, value]);
+        collector(key, value);
       }
     }
   }
@@ -66,17 +68,31 @@ export function collect(styles: Styles, left: Node, right: Node): void {
  * @description Parses the styles from the given content.
  * @param content The content to parse the styles from.
  */
-export function parseStyles(content: string): [styles: Styles, named: boolean] {
-  let named = false;
-
-  const styles: Styles = [];
+export function parseStyles(content: string): [named: boolean, styles: Mapping, reexports: Mapping] {
+  let named = true;
 
   const ast = parse(content, {
     sourceType: 'module',
     ecmaVersion: 'latest'
   });
 
+  const styles: Mapping = new Map();
+  const reexports: Mapping = new Map();
+
+  const stylesCollector: Collector = (key, value) => {
+    styles.set(key, value);
+  };
+
+  const reexportsCollector: Collector = (key, value) => {
+    reexports.set(key, value);
+  };
+
   simple(ast, {
+    VariableDeclarator({ id, init }) {
+      if (init) {
+        collect(id, init, stylesCollector);
+      }
+    },
     ExpressionStatement(node) {
       simple(node, {
         AssignmentExpression({ left }) {
@@ -85,9 +101,11 @@ export function parseStyles(content: string): [styles: Styles, named: boolean] {
 
             if (property.type === 'Identifier') {
               if (property.name === 'locals') {
+                named = false;
+
                 simple(node, {
                   Property({ key, value }) {
-                    collect(styles, key, value);
+                    collect(key, value, stylesCollector);
                   }
                 });
               }
@@ -96,20 +114,14 @@ export function parseStyles(content: string): [styles: Styles, named: boolean] {
         }
       });
     },
-    ExportNamedDeclaration(node) {
-      named = true;
-
-      simple(node, {
-        VariableDeclarator({ id, init }) {
-          if (init) {
-            collect(styles, id, init);
-          }
-        }
-      });
+    ExportNamedDeclaration({ specifiers }) {
+      for (const { local, exported } of specifiers) {
+        collect(local, exported, reexportsCollector);
+      }
     }
   });
 
-  return [styles, named];
+  return [named, styles, reexports];
 }
 
 /**
@@ -120,23 +132,32 @@ export function parseStyles(content: string): [styles: Styles, named: boolean] {
  * @param eol End of line character.
  */
 export function generateTypings(content: string, banner?: string, eol: string = EOL): string | null {
-  const [styles, named] = parseStyles(content);
+  const [named, styles, reexports] = parseStyles(content);
 
-  if (styles.length > 0) {
-    const typings: string[] = banner ? [banner, ''] : [];
+  if (styles.size > 0) {
+    const typings: string[] = banner ? [banner, ``] : [];
 
     if (named) {
       for (const [key, value] of styles) {
-        typings.push(`export const ${key}: ${JSON.stringify(value)};`);
+        if (reexports.has(key)) {
+          typings.push(
+            `declare const ${key}: ${JSON.stringify(value)};`,
+            ``,
+            `export { ${key} as ${reexports.get(key)} };`,
+            ``
+          );
+        } else {
+          typings.push(`export declare const ${key}: ${JSON.stringify(value)};`, ``);
+        }
       }
     } else {
-      typings.push('declare const styles: {');
+      typings.push(`declare const locals: {`);
 
       for (const [key, value] of styles) {
         typings.push(`  ${key}: ${JSON.stringify(value)}`);
       }
 
-      typings.push('};', '', 'export default styles;');
+      typings.push(`};`, ``, `export default locals;`, ``);
     }
 
     return typings.join(eol);

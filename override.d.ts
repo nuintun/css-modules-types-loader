@@ -21,13 +21,13 @@ declare module 'webpack' {
 
 declare module 'acorn-walk' {
   interface Visitors<TState> {
-    Literal?: (node: Literal, state: TState) => void;
-    Property?: (node: Property, state: TState) => void;
-    Identifier?: (node: Identifier, state: TState) => void;
-    VariableDeclarator?: (node: VariableDeclarator, state: TState) => void;
-    ExpressionStatement?: (node: ExpressionStatement, state: TState) => void;
-    AssignmentExpression?: (node: AssignmentExpression, state: TState) => void;
-    ExportNamedDeclaration?: (node: ExportNamedDeclaration, state: TState) => void;
+    Literal?(node: Literal, state: TState): void;
+    Property?(node: Property, state: TState): void;
+    Identifier?(node: Identifier, state: TState): void;
+    VariableDeclarator?(node: VariableDeclarator, state: TState): void;
+    ExpressionStatement?(node: ExpressionStatement, state: TState): void;
+    AssignmentExpression?(node: AssignmentExpression, state: TState): void;
+    ExportNamedDeclaration?(node: ExportNamedDeclaration, state: TState): void;
   }
 
   export function simple<TState = unknown, Node = unknown>(

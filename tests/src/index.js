@@ -1,3 +1,5 @@
-import styles from './index.module.css';
+import * as styles from './index.module.css';
 
-console.log(styles);
+for (const [key, value] of Object.entries(styles)) {
+  console.log(`${key}: ${value}`);
+}

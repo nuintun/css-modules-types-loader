@@ -42,6 +42,7 @@ function env(esnext) {
 export default function rollup(esnext) {
   const external = [
     // External dependencies.
+    'fs',
     'os',
     'util',
     'acorn',

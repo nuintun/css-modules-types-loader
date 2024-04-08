@@ -9,3 +9,27 @@
 .footer {
   background-color: black;
 }
+
+.null {
+  background-color: white;
+}
+
+.boolean {
+  background-color: black;
+}
+
+.class {
+  background-color: white;
+}
+
+.function {
+  background-color: black;
+}
+
+.public {
+  background-color: white;
+}
+
+.while {
+  background-color: black;
+}
