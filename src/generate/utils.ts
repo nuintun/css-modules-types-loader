@@ -2,11 +2,10 @@
  * @module utils
  */
 
-import { parse } from 'acorn';
 import { existsSync } from 'fs';
 import { rm } from 'fs/promises';
 import { simple } from 'acorn-walk';
-import { Identifier, Literal, Node } from 'estree';
+import { AnyNode, Identifier, Literal, parse } from 'acorn';
 
 type Mapping = Map<string, string>;
 
@@ -41,7 +40,7 @@ export function isString(value: unknown): value is string {
  * @param right The right node.
  * @param collector The collector function.
  */
-export function collect(left: Node, right: Node, collector: Collector): void {
+export function collect(left: AnyNode, right: AnyNode, collector: Collector): void {
   if (right.type === 'Literal') {
     const value = right.value;
 
@@ -89,9 +88,11 @@ export function parseStyles(content: string): [named: boolean, styles: Mapping, 
   };
 
   simple(ast, {
-    VariableDeclarator({ id, init }) {
-      if (init) {
-        collect(id, init, stylesCollector);
+    VariableDeclaration({ declarations }) {
+      for (const { id, init } of declarations) {
+        if (init) {
+          collect(id, init, stylesCollector);
+        }
       }
     },
     ExpressionStatement(node) {
