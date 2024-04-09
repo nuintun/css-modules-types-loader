@@ -155,7 +155,7 @@ export function generateTypings(content: string, banner?: string, eol: string = 
       typings.push(`declare const locals: {`);
 
       for (const [key, value] of styles) {
-        typings.push(`  ${JSON.stringify(key)}: ${JSON.stringify(value)}`);
+        typings.push(`  readonly ${JSON.stringify(key)}: ${JSON.stringify(value)}`);
       }
 
       typings.push(`};`, ``, `export default locals;`, ``);
