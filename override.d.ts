@@ -2,10 +2,10 @@
  * @module override
  */
 
-import { Compiler as ICompiler } from 'webpack';
+import webpack from 'webpack';
 
 declare module 'webpack' {
-  declare class Compiler extends ICompiler {
+  declare class Compiler extends webpack.Compiler {
     [key: symbol]: boolean;
   }
 }
