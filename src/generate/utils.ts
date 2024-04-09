@@ -79,11 +79,11 @@ export function parseStyles(content: string): [named: boolean, styles: Mapping, 
   const styles: Mapping = new Map();
   const reexports: Mapping = new Map();
 
-  const stylesCollector: Collector = (key, value) => {
+  const collectStyles: Collector = (key, value) => {
     styles.set(key, value);
   };
 
-  const reexportsCollector: Collector = (key, value) => {
+  const collectReexports: Collector = (key, value) => {
     reexports.set(key, value);
   };
 
@@ -91,34 +91,32 @@ export function parseStyles(content: string): [named: boolean, styles: Mapping, 
     VariableDeclaration({ declarations }) {
       for (const { id, init } of declarations) {
         if (init) {
-          collect(id, init, stylesCollector);
+          collect(id, init, collectStyles);
         }
       }
     },
-    ExpressionStatement(node) {
-      simple(node, {
-        AssignmentExpression({ left }) {
-          if (left.type === 'MemberExpression') {
-            const { property } = left;
+    AssignmentExpression({ left, right }) {
+      if (left.type === 'MemberExpression') {
+        const { property } = left;
 
-            if (property.type === 'Identifier') {
-              if (property.name === 'locals') {
-                named = false;
+        if (property.type === 'Identifier') {
+          if (property.name === 'locals') {
+            if (right.type === 'ObjectExpression') {
+              named = false;
 
-                simple(node, {
-                  Property({ key, value }) {
-                    collect(key, value, stylesCollector);
-                  }
-                });
-              }
+              simple(right, {
+                Property({ key, value }) {
+                  collect(key, value, collectStyles);
+                }
+              });
             }
           }
         }
-      });
+      }
     },
     ExportNamedDeclaration({ specifiers }) {
       for (const { local, exported } of specifiers) {
-        collect(local, exported, reexportsCollector);
+        collect(local, exported, collectReexports);
       }
     }
   });
