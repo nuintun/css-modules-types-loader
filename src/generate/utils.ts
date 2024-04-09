@@ -10,6 +10,8 @@ import { Identifier, Literal, Node } from 'estree';
 
 type Mapping = Map<string, string>;
 
+type Key = Identifier['name'] | Literal['value'];
+
 type Collector = (key: string, value: string) => void;
 
 /**
@@ -44,7 +46,7 @@ export function collect(left: Node, right: Node, collector: Collector): void {
     const value = right.value;
 
     if (isString(value)) {
-      let key: Identifier['name'] | Literal['value'];
+      let key: Key;
 
       switch (left.type) {
         case 'Identifier':
@@ -153,7 +155,7 @@ export function generateTypings(content: string, banner?: string, eol: string = 
       typings.push(`declare const locals: {`);
 
       for (const [key, value] of styles) {
-        typings.push(`  ${key}: ${JSON.stringify(value)}`);
+        typings.push(`  ${JSON.stringify(key)}: ${JSON.stringify(value)}`);
       }
 
       typings.push(`};`, ``, `export default locals;`, ``);
