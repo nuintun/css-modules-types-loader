@@ -33,3 +33,7 @@
 .while {
   background-color: black;
 }
+
+.default {
+  background-color: white;
+}
