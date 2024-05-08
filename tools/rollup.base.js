@@ -4,7 +4,7 @@
 
 import replace from '@rollup/plugin-replace';
 import treeShake from './plugins/tree-shake.js';
-import { isBuiltin, createRequire } from 'module';
+import { createRequire, isBuiltin } from 'module';
 import typescript from '@rollup/plugin-typescript';
 
 const pkg = createRequire(import.meta.url)('../package.json');
