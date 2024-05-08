@@ -2,12 +2,19 @@
  * @module rollup.base
  */
 
-import { createRequire } from 'module';
 import replace from '@rollup/plugin-replace';
 import treeShake from './plugins/tree-shake.js';
+import { isBuiltin, createRequire } from 'module';
 import typescript from '@rollup/plugin-typescript';
 
 const pkg = createRequire(import.meta.url)('../package.json');
+
+const externals = [
+  // Dependencies
+  ...Object.keys(pkg.dependencies || {}),
+  // Peer dependencies
+  ...Object.keys(pkg.peerDependencies || {})
+];
 
 const banner = `/**
   * @package ${pkg.name}
@@ -40,19 +47,6 @@ function env(esnext) {
  * @return {import('rollup').RollupOptions[]}
  */
 export default function rollup(esnext) {
-  const external = [
-    // External dependencies.
-    'fs',
-    'util',
-    'acorn',
-    'tslib',
-    'estree',
-    'threads',
-    'webpack',
-    'acorn-walk',
-    'fs/promises'
-  ];
-
   return [
     {
       input: 'src/index.ts',
@@ -68,12 +62,24 @@ export default function rollup(esnext) {
         entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
         chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
       },
-      external,
       plugins: [env(esnext), typescript(), treeShake()],
       onwarn(error, warn) {
         if (error.code !== 'CIRCULAR_DEPENDENCY') {
           warn(error);
         }
+      },
+      external(source) {
+        if (isBuiltin(source)) {
+          return true;
+        }
+
+        for (const external of externals) {
+          if (source === external || source.startsWith(`${external}/`)) {
+            return true;
+          }
+        }
+
+        return false;
       }
     },
     {
@@ -90,12 +96,24 @@ export default function rollup(esnext) {
         entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
         chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
       },
-      external,
       plugins: [env(esnext), typescript(), treeShake()],
       onwarn(error, warn) {
         if (error.code !== 'CIRCULAR_DEPENDENCY') {
           warn(error);
         }
+      },
+      external(source) {
+        if (isBuiltin(source)) {
+          return true;
+        }
+
+        for (const external of externals) {
+          if (source === external || source.startsWith(`${external}/`)) {
+            return true;
+          }
+        }
+
+        return false;
       }
     }
   ];
