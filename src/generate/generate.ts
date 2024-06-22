@@ -2,28 +2,27 @@
  * @module generate
  */
 
-import { expose } from 'threads';
 import { Options } from '/interface';
 import { writeFile } from 'fs/promises';
 import { generateTypings, removeFile } from './utils';
 
-/**
- * @function generate
- * @description Generate typings for CSS modules and write them to a file.
- * @param path The path to the file.
- * @param content The CSS content.
- * @param options Optional options for generating typings.
- */
-export interface Generate {
-  (path: string, content: string, options?: Options): Promise<void>;
+export interface GenerateOptions extends Options {
+  /**
+   * @description The path to the typings file.
+   */
+  path: string;
+  /**
+   * @description The content of the typings file.
+   */
+  content: string;
 }
 
-expose(function generate(path, content, { banner, eol } = {}) {
+export default async function generate({ eol, path, banner, content }: GenerateOptions): Promise<void> {
   const typings = generateTypings(content, banner, eol);
 
   if (typings) {
-    return writeFile(path, typings);
+    await writeFile(path, typings);
+  } else {
+    await removeFile(path);
   }
-
-  return removeFile(path);
-} as Generate);
+}
