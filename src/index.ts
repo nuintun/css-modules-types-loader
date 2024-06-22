@@ -9,28 +9,30 @@ import { Compiler, LoaderDefinition } from 'webpack';
 
 export { Options };
 
-const name = __NAME__;
-const initialized = Symbol(name);
-
-declare class ICompiler extends Compiler {
-  [initialized: symbol]: boolean;
-}
+const initialized = new Set<Compiler>();
 
 export default (function loader(content, sourceMap, additionalData) {
   const callback = this.async();
-  const logger = this.getLogger(name);
+  const logger = this.getLogger(__NAME__);
   const options = this.getOptions(schema);
-  const compiler = this._compiler as ICompiler;
 
-  if (compiler) {
-    if (!compiler[initialized]) {
-      compiler[initialized] = true;
+  const { _compiler: compiler } = this;
 
-      if (compiler.watchMode) {
-        compiler.hooks.watchClose.tap(name, () => terminate());
-      } else {
-        compiler.hooks.done.tapPromise(name, () => terminate());
-      }
+  if (compiler && !initialized.has(compiler)) {
+    initialized.add(compiler);
+
+    const teardown = () => {
+      terminate().catch((error: Error) => {
+        logger.error(error.message);
+      });
+
+      initialized.delete(compiler);
+    };
+
+    if (compiler.watchMode) {
+      compiler.hooks.watchClose.tap(__NAME__, teardown);
+    } else {
+      compiler.hooks.done.tap(__NAME__, teardown);
     }
   }
 
