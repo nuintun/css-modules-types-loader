@@ -11,9 +11,6 @@
     "require": "./cjs/index.cjs",
     "types": "./types/index.d.ts"
   },
-  "engines": {
-    "node": ">=10.0.0"
-  },
   "files": [
     "cjs",
     "esm",
