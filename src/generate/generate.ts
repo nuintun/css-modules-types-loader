@@ -6,6 +6,16 @@ import { Options } from '/interface';
 import { writeFile } from 'fs/promises';
 import { generateTypings, removeFile } from './utils';
 
+const enum Action {
+  REMOVE = 'remove',
+  GENERATE = 'generate'
+}
+
+export interface Output {
+  path: string;
+  action: `${Action}`;
+}
+
 export interface GenerateOptions extends Options {
   /**
    * @description The path to the typings file.
@@ -17,12 +27,16 @@ export interface GenerateOptions extends Options {
   content: string;
 }
 
-export default async function generate({ eol, path, banner, content }: GenerateOptions): Promise<void> {
+export default async function generate({ eol, path, banner, content }: GenerateOptions): Promise<Output> {
   const typings = generateTypings(content, banner, eol);
 
   if (typings) {
     await writeFile(path, typings);
-  } else {
-    await removeFile(path);
+
+    return { path, action: Action.GENERATE };
   }
+
+  await removeFile(path);
+
+  return { path, action: Action.REMOVE };
 }
