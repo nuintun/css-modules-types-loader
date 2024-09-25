@@ -28,8 +28,8 @@ importers:
         specifier: ^12.1.0
         version: 12.1.0(rollup@4.22.4)(tslib@2.7.0)(typescript@5.6.2)
       '@types/node':
-        specifier: ^22.6.1
-        version: 22.6.1
+        specifier: ^22.7.0
+        version: 22.7.0
       css-loader:
         specifier: ^7.1.2
         version: 7.1.2(webpack@5.94.0)
@@ -321,8 +321,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@22.6.1':
-    resolution: {integrity: sha512-V48tCfcKb/e6cVUigLAaJDAILdMP0fUW6BidkPK4GpGjXcfbnoHasCZDwz3N3yVt5we2RHm4XTQCpv0KJz9zqw==}
+  '@types/node@22.7.0':
+    resolution: {integrity: sha512-MOdOibwBs6KW1vfqz2uKMlxq5xAfAZ98SZjO8e3XnAbFnTJtAspqhWk7hrdSAs9/Y14ZWMiy7/MxMUzAOadYEw==}
 
   '@webassemblyjs/ast@1.12.1':
     resolution: {integrity: sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==}
@@ -1170,7 +1170,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@22.6.1':
+  '@types/node@22.7.0':
     dependencies:
       undici-types: 6.19.8
 
@@ -1494,7 +1494,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.6.1
+      '@types/node': 22.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
