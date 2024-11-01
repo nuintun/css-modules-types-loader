@@ -2,9 +2,9 @@
  * @module utils
  */
 
-import { existsSync } from 'fs';
-import { rm } from 'fs/promises';
 import { simple } from 'acorn-walk';
+import { existsSync } from 'node:fs';
+import { rm } from 'node:fs/promises';
 import { AnyNode, Identifier, Literal, parse } from 'acorn';
 
 type Mapping = Map<string, string>;
