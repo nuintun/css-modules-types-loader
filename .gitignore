@@ -132,5 +132,4 @@ dist
 # Build dist
 /cjs/
 /esm/
-/types/
 *.css.d.ts

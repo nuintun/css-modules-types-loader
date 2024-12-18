@@ -10,25 +10,25 @@ import { createRequire, isBuiltin } from 'node:module';
 const pkg = createRequire(import.meta.url)('../package.json');
 
 const externals = [
-  // Dependencies
+  // Dependencies.
   ...Object.keys(pkg.dependencies || {}),
-  // Peer dependencies
+  // Peer dependencies.
   ...Object.keys(pkg.peerDependencies || {})
 ];
 
 const banner = `/**
-  * @package ${pkg.name}
-  * @license ${pkg.license}
-  * @version ${pkg.version}
-  * @author ${pkg.author.name} <${pkg.author.email}>
-  * @description ${pkg.description}
-  * @see ${pkg.homepage}
-  */
- `;
+ * @package ${pkg.name}
+ * @license ${pkg.license}
+ * @version ${pkg.version}
+ * @author ${pkg.author.name} <${pkg.author.email}>
+ * @description ${pkg.description}
+ * @see ${pkg.homepage}
+ */
+`;
 
 /**
  * @function env
- * @param {boolean} esnext
+ * @param {boolean} esnext Is esnext.
  * @return {import('rollup').Plugin}
  */
 function env(esnext) {
@@ -43,78 +43,47 @@ function env(esnext) {
 
 /**
  * @function rollup
- * @param {boolean} [esnext]
- * @return {import('rollup').RollupOptions[]}
+ * @param {boolean} [esnext] Is esnext.
+ * @return {import('rollup').RollupOptions}
  */
 export default function rollup(esnext) {
-  return [
-    {
-      input: 'src/index.ts',
-      output: {
-        banner,
-        interop: 'auto',
-        exports: 'auto',
-        esModule: false,
-        preserveModules: true,
-        dir: esnext ? 'esm' : 'cjs',
-        format: esnext ? 'esm' : 'cjs',
-        generatedCode: { constBindings: true },
-        entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
-        chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
-      },
-      plugins: [env(esnext), typescript(), treeShake()],
-      onwarn(error, warn) {
-        if (error.code !== 'CIRCULAR_DEPENDENCY') {
-          warn(error);
-        }
-      },
-      external(source) {
-        if (isBuiltin(source)) {
-          return true;
-        }
-
-        for (const external of externals) {
-          if (source === external || source.startsWith(`${external}/`)) {
-            return true;
-          }
-        }
-
-        return false;
+  return {
+    input: ['src/index.ts', 'src/generate/generate.ts'],
+    output: {
+      banner,
+      interop: 'auto',
+      preserveModules: true,
+      dir: esnext ? 'esm' : 'cjs',
+      format: esnext ? 'esm' : 'cjs',
+      generatedCode: { constBindings: true },
+      chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
+      entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`
+    },
+    plugins: [
+      env(esnext),
+      typescript({
+        declaration: true,
+        declarationDir: esnext ? 'esm' : 'cjs'
+      }),
+      treeShake()
+    ],
+    onwarn(error, warn) {
+      if (error.code !== 'CIRCULAR_DEPENDENCY') {
+        warn(error);
       }
     },
-    {
-      input: 'src/generate/generate.ts',
-      output: {
-        banner,
-        interop: 'auto',
-        exports: 'auto',
-        esModule: false,
-        preserveModules: true,
-        format: esnext ? 'esm' : 'cjs',
-        generatedCode: { constBindings: true },
-        dir: esnext ? 'esm/generate' : 'cjs/generate',
-        entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
-        chunkFileNames: `[name].${esnext ? 'js' : 'cjs'}`
-      },
-      plugins: [env(esnext), typescript(), treeShake()],
-      onwarn(error, warn) {
-        if (error.code !== 'CIRCULAR_DEPENDENCY') {
-          warn(error);
-        }
-      },
-      external(source) {
-        if (isBuiltin(source)) {
+    external(source) {
+      if (isBuiltin(source)) {
+        return true;
+      }
+
+      for (const external of externals) {
+        if (source === external || source.startsWith(`${external}/`)) {
           return true;
         }
-
-        for (const external of externals) {
-          if (source === external || source.startsWith(`${external}/`)) {
-            return true;
-          }
-        }
-
-        return false;
       }
+
+      return false;
     }
-  ];
+  };
 }

@@ -6,15 +6,15 @@
     "newLine": "lf",
     "jsx": "react-jsx",
     "module": "ESNext",
-    "target": "ES2018",
+    "target": "ES2017",
     "skipLibCheck": true,
     "importHelpers": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "moduleResolution": "Node",
     "noImplicitOverride": true,
     "noUnusedParameters": true,
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "/*": [
@@ -27,6 +27,6 @@
     "global.d.ts"
   ],
   "exclude": [
-    "node_modules/**/*"
+    "node_modules"
   ]
 }
