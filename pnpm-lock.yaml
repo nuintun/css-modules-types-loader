@@ -37,8 +37,8 @@ importers:
         specifier: ^7.1.2
         version: 7.1.2(@rspack/core@1.1.1)(webpack@5.97.1)
       dts-paths:
-        specifier: ^1.0.1
-        version: 1.0.1(typescript@5.7.2)
+        specifier: ^1.0.2
+        version: 1.0.2(typescript@5.7.2)
       magic-string:
         specifier: ^0.30.17
         version: 0.30.17
@@ -548,8 +548,8 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  dts-paths@1.0.1:
-    resolution: {integrity: sha512-bMcXAich0V53IH3WTMriIAebgXKrXPWT8JGhhgCFb6seFglqBGNsdPcg/OlirhfvUfXyAw5v+W1t4e9Ersi/uQ==}
+  dts-paths@1.0.2:
+    resolution: {integrity: sha512-YFf22awX/n3+bP/IcuqtRa3vh01psqbWDmBYGlhfpMuhvRuSxGN0dIIR1He4pxenrkrbgPb+blS8Gn8evJ83AQ==}
     peerDependencies:
       typescript: ^5.0.0
 
@@ -1399,7 +1399,7 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  dts-paths@1.0.1(typescript@5.7.2):
+  dts-paths@1.0.2(typescript@5.7.2):
     dependencies:
       ts-morph: 24.0.0
       tslib: 2.8.1
