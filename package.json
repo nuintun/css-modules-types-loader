@@ -18,9 +18,11 @@
     "url": "git+https://github.com/nuintun/css-modules-types-loader.git"
   },
   "keywords": [
+    "rspack",
     "webpack",
     "typescript",
     "css modules",
+    "rspack loader",
     "webpack loader",
     "css modules types",
     "css modules typings",
