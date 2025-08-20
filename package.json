@@ -61,16 +61,16 @@
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-typescript": "^12.1.4",
     "@rspack/core": "^1.4.11",
-    "@types/node": "^24.2.0",
+    "@types/node": "^24.3.0",
     "css-loader": "^7.1.2",
     "dts-paths": "^1.1.11",
     "magic-string": "^0.30.17",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
-    "rollup": "^4.46.2",
+    "rollup": "^4.46.3",
     "style-loader": "^4.0.0",
     "typescript": "^5.9.2",
-    "webpack": "^5.101.0"
+    "webpack": "^5.101.3"
   },
   "peerDependencies": {
     "@rspack/core": "^1.0.0",
