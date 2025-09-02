@@ -60,7 +60,7 @@
   "devDependencies": {
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-typescript": "^12.1.4",
-    "@rspack/core": "^1.5.1",
+    "@rspack/core": "^1.5.2",
     "@types/node": "^24.3.0",
     "css-loader": "^7.1.2",
     "dts-paths": "^1.1.11",
