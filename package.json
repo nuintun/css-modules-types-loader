@@ -1,6 +1,6 @@
 {
   "name": "css-modules-types-loader",
-  "version": "0.6.12",
+  "version": "0.6.13",
   "description": "A webpack loader that dynamically generates TypeScript typings for CSS modules from css-loader.",
   "type": "module",
   "main": "cjs/index.cjs",
@@ -60,16 +60,16 @@
   "devDependencies": {
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-typescript": "^12.1.4",
-    "@rspack/core": "^1.5.7",
-    "@types/node": "^24.5.2",
+    "@rspack/core": "^1.5.8",
+    "@types/node": "^24.7.2",
     "css-loader": "^7.1.2",
-    "dts-paths": "^1.1.12",
+    "dts-paths": "^1.1.13",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
-    "rollup": "^4.52.2",
+    "rollup": "^4.52.4",
     "style-loader": "^4.0.0",
-    "typescript": "^5.9.2",
-    "webpack": "^5.101.3"
+    "typescript": "^5.9.3",
+    "webpack": "^5.102.1"
   },
   "peerDependencies": {
     "@rspack/core": "^1.0.0",
