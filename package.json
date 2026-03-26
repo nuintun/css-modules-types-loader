@@ -1,6 +1,6 @@
 {
   "name": "css-modules-types-loader",
-  "version": "0.6.17",
+  "version": "0.6.18",
   "description": "A webpack loader that dynamically generates TypeScript typings for CSS modules from css-loader.",
   "type": "module",
   "main": "cjs/index.cjs",
@@ -41,6 +41,7 @@
   "homepage": "https://github.com/nuintun/css-modules-types-loader#readme",
   "scripts": {
     "lint": "tsc --noEmit",
+    "pretest": "pnpm build:main",
     "clean": "node tools/clean.js",
     "prepublishOnly": "pnpm build",
     "test": "node tests/webpack.js",
@@ -60,15 +61,15 @@
   "devDependencies": {
     "@rollup/plugin-replace": "^6.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@rspack/core": "^1.7.7",
-    "@types/node": "^25.3.5",
+    "@rspack/core": "^1.7.10",
+    "@types/node": "^25.5.0",
     "css-loader": "^7.1.4",
-    "dts-paths": "^1.1.16",
+    "dts-paths": "^2.1.1",
     "prettier": "^3.8.1",
     "rimraf": "^6.1.3",
-    "rollup": "^4.59.0",
+    "rollup": "^4.60.0",
     "style-loader": "^4.0.0",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "webpack": "^5.105.4"
   },
   "peerDependencies": {

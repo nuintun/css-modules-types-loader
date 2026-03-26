@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "pretty": true,
     "strict": true,
     "newLine": "lf",
     "jsx": "react-jsx",
-    "module": "ESNext",
-    "target": "ES2017",
+    "module": "esnext",
+    "rootDir": "./src",
+    "target": "es2017",
     "skipLibCheck": true,
     "importHelpers": true,
     "noUnusedLocals": true,
@@ -15,15 +15,17 @@
     "noImplicitOverride": true,
     "noUnusedParameters": true,
     "moduleResolution": "bundler",
+    "types": [
+      "node"
+    ],
     "paths": {
       "/*": [
-        "src/*"
+        "./src/*"
       ]
     }
   },
   "include": [
-    "src/**/*",
-    "global.d.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules"
