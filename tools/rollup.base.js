@@ -62,7 +62,8 @@ export default function rollup(esnext) {
       env(esnext),
       typescript({
         declaration: true,
-        declarationDir: esnext ? 'esm' : 'cjs'
+        declarationDir: esnext ? 'esm' : 'cjs',
+        include: ['../src/**/*', '../global.d.ts']
       })
     ],
     onwarn(error, warn) {
