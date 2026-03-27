@@ -42,12 +42,12 @@
   "scripts": {
     "lint": "tsc --noEmit",
     "pretest": "pnpm build:main",
-    "clean": "node tools/clean.js",
+    "clean": "node tools/clean.ts",
     "prepublishOnly": "pnpm build",
-    "test": "node tests/webpack.js",
-    "build:cjs": "rollup -c tools/rollup.cjs.js",
-    "build:esm": "rollup -c tools/rollup.esm.js",
-    "build:fix-types": "node tools/fix-types.js",
+    "test": "node tests/webpack.ts",
+    "build:cjs": "rollup -c tools/rollup.cjs.ts",
+    "build:esm": "rollup -c tools/rollup.esm.ts",
+    "build:fix-types": "node tools/fix-types.ts",
     "build": "pnpm clean && pnpm build:main && pnpm format",
     "format": "prettier --write . --ignore-path .prettierignore",
     "build:main": "pnpm build:cjs && pnpm build:esm && pnpm build:fix-types"

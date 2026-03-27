@@ -80,7 +80,7 @@ compiler.run((error, stats) => {
     if (error) {
       console.error(error);
     } else {
-      console.log(stats.toString(compiler.options.stats));
+      console.log(stats?.toString(compiler.options.stats));
     }
   });
 });

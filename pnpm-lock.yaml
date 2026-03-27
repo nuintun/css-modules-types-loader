@@ -585,8 +585,8 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
-  electron-to-chromium@1.5.326:
-    resolution: {integrity: sha512-uRBlUfKKdsXMkiiOurgaybNC10tjrD+skXLEg7NHbm6h0uAoqj3xMb9uue5BfcSCXJ4mcyJMOucI6q55D7p6KQ==}
+  electron-to-chromium@1.5.328:
+    resolution: {integrity: sha512-QNQ5l45DzYytThO21403XN3FvK0hOkWDG8viNf6jqS42msJ8I4tGDSpBCgvDRRPnkffafiwAym2X2eHeGD2V0w==}
 
   enhanced-resolve@5.20.1:
     resolution: {integrity: sha512-Qohcme7V1inbAfvjItgw0EaxVX5q2rdVEZHRBrEQdRZTssLDGsL8Lwrznl8oQ/6kuTJONLaDcGjkNP247XEhcA==}
@@ -1326,7 +1326,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.11
       caniuse-lite: 1.0.30001781
-      electron-to-chromium: 1.5.326
+      electron-to-chromium: 1.5.328
       node-releases: 2.0.36
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
 
@@ -1360,7 +1360,7 @@ snapshots:
       tslib: 2.8.1
       typescript: 6.0.2
 
-  electron-to-chromium@1.5.326: {}
+  electron-to-chromium@1.5.328: {}
 
   enhanced-resolve@5.20.1:
     dependencies:
