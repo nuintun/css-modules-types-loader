@@ -2,7 +2,7 @@
  * @module interface
  */
 
-import { LoaderContext } from 'webpack';
+import { LoaderContext } from '@rspack/core';
 
 export interface Options {
   /**

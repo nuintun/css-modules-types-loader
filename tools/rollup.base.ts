@@ -10,10 +10,10 @@ import pkg from '../package.json' with { type: 'json' };
 
 const externals = [
   // @ts-ignore
-  // Dependencies
+  // dependencies
   ...Object.keys(pkg.dependencies ?? {}),
   // @ts-ignore
-  // Peer dependencies
+  // peer dependencies
   ...Object.keys(pkg.peerDependencies ?? {})
 ];
 
@@ -30,8 +30,8 @@ const banner = `/**
 
 /**
  * @function env
- * @param {boolean} esnext Is esnext
- * @return {import('rollup').Plugin}
+ * @description replace environment variables
+ * @param {boolean} esnext is esnext
  */
 function env(esnext: boolean) {
   return replace({
@@ -46,20 +46,23 @@ function env(esnext: boolean) {
 }
 
 /**
- * @function rollup
- * @param {boolean} [esnext] Is esnext
- * @return {import('rollup').RollupOptions}
+ * @function createConfig
+ * @description create rollup configuration
+ * @param esnext is esnext
+ * @param bundler bundler name
  */
-export default function rollup(esnext = false): RollupOptions {
+function createConfig(esnext: boolean, bundler: string): RollupOptions {
+  const root = esnext ? 'esm' : 'cjs';
+
   return {
     input: ['src/index.ts', 'src/generate/generate.ts'],
     output: {
       banner,
       interop: 'auto',
-      exports: 'auto',
+      exports: 'named',
       esModule: false,
       preserveModules: true,
-      dir: esnext ? 'esm' : 'cjs',
+      dir: `${root}/${bundler}`,
       format: esnext ? 'esm' : 'cjs',
       generatedCode: { constBindings: true },
       entryFileNames: `[name].${esnext ? 'js' : 'cjs'}`,
@@ -69,7 +72,7 @@ export default function rollup(esnext = false): RollupOptions {
       env(esnext),
       typescript({
         declaration: true,
-        declarationDir: esnext ? 'esm' : 'cjs',
+        declarationDir: `${root}/${bundler}`,
         include: ['../src/**/*', '../global.d.ts']
       })
     ],
@@ -92,4 +95,13 @@ export default function rollup(esnext = false): RollupOptions {
       return false;
     }
   };
+}
+
+/**
+ * @function rollup
+ * @description rollup configuration
+ * @param {boolean} [esnext] is esnext
+ */
+export default function rollup(esnext = false): RollupOptions[] {
+  return [createConfig(esnext, 'rspack'), createConfig(esnext, 'webpack')];
 }

@@ -3,18 +3,23 @@
  */
 
 import path from 'node:path';
-import webpack from 'webpack';
+import swcrc from './.swcrc.ts';
+import rspack from '@rspack/core';
+
+const mode = 'production';
 
 const banner = `/**
  * @module css-modules-typings
  */`;
 
-const compiler = webpack({
+const swcOptions = await swcrc(mode);
+
+const compiler = rspack({
+  mode,
   name: 'react',
-  mode: 'development',
   target: ['web', 'es5'],
   context: path.resolve('src'),
-  entry: path.resolve('tests/src/index.js'),
+  entry: path.resolve('tests/src/index.ts'),
   output: {
     publicPath: '/dist/',
     filename: `[name].js`,
@@ -42,14 +47,24 @@ const compiler = webpack({
       {
         oneOf: [
           {
-            test: /\.css$/,
+            test: /\.[jt]sx?$/i,
+            exclude: /[\\/]node_modules[\\/]/,
+            use: [
+              {
+                loader: 'builtin:swc-loader',
+                options: swcOptions
+              }
+            ]
+          },
+          {
+            test: /\.css$/i,
             exclude: /[\\/]node_modules[\\/]/,
             use: [
               {
                 loader: 'style-loader'
               },
               {
-                loader: 'css-modules-types-loader',
+                loader: 'css-modules-types-loader/rspack',
                 options: {
                   banner
                 }
@@ -72,7 +87,13 @@ const compiler = webpack({
       }
     ]
   },
-  plugins: [new webpack.ProgressPlugin({ percentBy: 'entries' })]
+  plugins: [
+    new rspack.ProgressPlugin({
+      progressChars: '█▒',
+      prefix: 'css-modules-typings',
+      template: '<i> {prefix:.cyan.bold} {bar:25.green/white.dim} ({percent}%) {wide_msg:.dim}'
+    })
+  ]
 });
 
 compiler.run((error, stats) => {
