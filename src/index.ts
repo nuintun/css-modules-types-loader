@@ -5,7 +5,7 @@
 import { schema } from './schema';
 import { Options } from './interface';
 import { generate } from './generate';
-import { LoaderDefinition } from '@rspack/core';
+import { LoaderDefinition } from 'webpack';
 
 export { Options };
 
