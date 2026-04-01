@@ -18,9 +18,10 @@ const compiler = rspack({
   mode,
   name: 'react',
   target: ['web', 'es5'],
-  context: path.resolve('src'),
+  context: path.resolve('tests/src'),
   entry: path.resolve('tests/src/index.ts'),
   output: {
+    clean: true,
     publicPath: '/dist/',
     filename: `[name].js`,
     chunkFilename: `[name].js`,

@@ -17,7 +17,7 @@
 - Removes stale `*.d.ts` files when the module no longer exports class names.
 - Optional banner and line-ending (`eol`) customization.
 
-## Installation
+## Install
 
 ```bash
 pnpm add -D css-modules-types-loader
@@ -93,10 +93,10 @@ module.exports = {
 
 ## Options
 
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `banner` | `string` | `undefined` | Adds a banner prefix to each generated `*.d.ts` file. |
-| `eol` | `string` | `"\\n"` | Controls newline characters in generated `*.d.ts` files. |
+| Option   | Type     | Default     | Description                                              |
+| -------- | -------- | ----------- | -------------------------------------------------------- |
+| `banner` | `string` | `undefined` | Adds a banner prefix to each generated `*.d.ts` file.    |
+| `eol`    | `string` | `"\\n"`     | Controls newline characters in generated `*.d.ts` files. |
 
 ## How it works
 
