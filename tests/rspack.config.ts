@@ -62,7 +62,7 @@ const compiler = rspack({
             exclude: /[\\/]node_modules[\\/]/,
             use: [
               {
-                loader: 'style-loader'
+                loader: rspack.CssExtractRspackPlugin.loader
               },
               {
                 loader: 'css-modules-types-loader/rspack',
@@ -93,6 +93,11 @@ const compiler = rspack({
       progressChars: '█▒',
       prefix: 'css-modules-typings',
       template: '<i> {prefix:.cyan.bold} {bar:25.green/white.dim} ({percent}%) {wide_msg:.dim}'
+    }),
+    new rspack.CssExtractRspackPlugin({
+      ignoreOrder: true,
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].css'
     })
   ]
 });

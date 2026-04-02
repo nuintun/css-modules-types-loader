@@ -6,6 +6,7 @@ import { Piscina } from 'piscina';
 import { GenerateOptions, Output } from './generate';
 
 const piscina = new Piscina<GenerateOptions, Output>({
+  name: 'generate',
   filename: __WORKER__
 });
 

@@ -37,8 +37,8 @@ importers:
         specifier: ^7.1.4
         version: 7.1.4(@rspack/core@1.7.11)(webpack@5.105.4)
       dts-paths:
-        specifier: ^2.2.0
-        version: 2.2.0(typescript@6.0.2)
+        specifier: ^2.2.1
+        version: 2.2.1(typescript@6.0.2)
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
@@ -48,9 +48,6 @@ importers:
       rollup:
         specifier: ^4.60.1
         version: 4.60.1
-      style-loader:
-        specifier: ^4.0.0
-        version: 4.0.0(webpack@5.105.4)
       typescript:
         specifier: ^6.0.2
         version: 6.0.2
@@ -580,13 +577,13 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  dts-paths@2.2.0:
-    resolution: {integrity: sha512-gNXKnAtb3iTCtE5AwIik2gdPJEgDVkh9xJxrtFJu2gdb3Iv1IpRxj4Z+iGIrqllPpAfgDlY9NA1bVOfxnh1NVw==}
+  dts-paths@2.2.1:
+    resolution: {integrity: sha512-ftfo1dMnp6FS/0BiEJm3AGo9DnrE0aw7X3WLPKUBwDVFbC4v5lgJIgsKgDmQRhBQdB3L0T0c7hSjneVAfo/XoQ==}
     peerDependencies:
       typescript: '>=5.0.0'
 
-  electron-to-chromium@1.5.330:
-    resolution: {integrity: sha512-jFNydB5kFtYUobh4IkWUnXeyDbjf/r9gcUEXe1xcrcUxIGfTdzPXA+ld6zBRbwvgIGVzDll/LTIiDztEtckSnA==}
+  electron-to-chromium@1.5.331:
+    resolution: {integrity: sha512-IbxXrsTlD3hRodkLnbxAPP4OuJYdWCeM3IOdT+CpcMoIwIoDfCmRpEtSPfwBXxVkg9xmBeY7Lz2Eo2TDn/HC3Q==}
 
   enhanced-resolve@5.20.1:
     resolution: {integrity: sha512-Qohcme7V1inbAfvjItgw0EaxVX5q2rdVEZHRBrEQdRZTssLDGsL8Lwrznl8oQ/6kuTJONLaDcGjkNP247XEhcA==}
@@ -712,8 +709,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  node-releases@2.0.36:
-    resolution: {integrity: sha512-TdC8FSgHz8Mwtw9g5L4gR/Sh9XhSP/0DEkQxfEFXOpiul5IiHgHan2VhYYb6agDSfp4KuvltmGApc8HMgUrIkA==}
+  node-releases@2.0.37:
+    resolution: {integrity: sha512-1h5gKZCF+pO/o3Iqt5Jp7wc9rH3eJJ0+nh/CIoiRwjRxde/hAHyLPXYN4V3CqKAbiZPSeJFSWHmJsbkicta0Eg==}
 
   p-limit@7.3.0:
     resolution: {integrity: sha512-7cIXg/Z0M5WZRblrsOla88S4wAK+zOQQWeBYfV3qJuJXMr+LnbYjaadrFaS0JILfEDPVqHyKnZ1Z/1d6J9VVUw==}
@@ -818,12 +815,6 @@ packages:
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
-
-  style-loader@4.0.0:
-    resolution: {integrity: sha512-1V4WqhhZZgjVAVJyt7TdDPZoPBPNHbekX4fWnCJL1yQukhCeZhJySUL+gL9y6sNdN95uEOS83Y55SqHcP7MzLA==}
-    engines: {node: '>= 18.12.0'}
-    peerDependencies:
-      webpack: ^5.27.0
 
   supports-color@8.1.1:
     resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
@@ -1334,8 +1325,8 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.13
       caniuse-lite: 1.0.30001784
-      electron-to-chromium: 1.5.330
-      node-releases: 2.0.36
+      electron-to-chromium: 1.5.331
+      node-releases: 2.0.37
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
   buffer-from@1.1.2: {}
@@ -1362,14 +1353,14 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  dts-paths@2.2.0(typescript@6.0.2):
+  dts-paths@2.2.1(typescript@6.0.2):
     dependencies:
       magic-string: 0.30.21
       p-limit: 7.3.0
       tslib: 2.8.1
       typescript: 6.0.2
 
-  electron-to-chromium@1.5.330: {}
+  electron-to-chromium@1.5.331: {}
 
   enhanced-resolve@5.20.1:
     dependencies:
@@ -1466,7 +1457,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  node-releases@2.0.36: {}
+  node-releases@2.0.37: {}
 
   p-limit@7.3.0:
     dependencies:
@@ -1586,10 +1577,6 @@ snapshots:
       source-map: 0.6.1
 
   source-map@0.6.1: {}
-
-  style-loader@4.0.0(webpack@5.105.4):
-    dependencies:
-      webpack: 5.105.4
 
   supports-color@8.1.1:
     dependencies:

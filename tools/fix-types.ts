@@ -9,7 +9,7 @@ Promise.all([
     tsconfig: {
       extends: './tsconfig.json',
       compilerOptions: {
-        rootDir: './cjs/rspack',
+        rootDir: 'cjs/rspack',
         paths: {
           '/*': ['./cjs/rspack/*']
         }
@@ -30,7 +30,7 @@ Promise.all([
     tsconfig: {
       extends: './tsconfig.json',
       compilerOptions: {
-        rootDir: './cjs/webpack',
+        rootDir: 'cjs/webpack',
         paths: {
           '/*': ['./cjs/webpack/*']
         }
@@ -44,7 +44,7 @@ Promise.all([
     tsconfig: {
       extends: './tsconfig.json',
       compilerOptions: {
-        rootDir: './esm/rspack',
+        rootDir: 'esm/rspack',
         paths: {
           '/*': ['./esm/rspack/*']
         }
@@ -62,7 +62,7 @@ Promise.all([
     tsconfig: {
       extends: './tsconfig.json',
       compilerOptions: {
-        rootDir: './esm/webpack',
+        rootDir: 'esm/webpack',
         paths: {
           '/*': ['./esm/webpack/*']
         }

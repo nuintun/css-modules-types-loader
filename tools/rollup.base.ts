@@ -58,9 +58,9 @@ function createConfig(esnext: boolean, bundler: string): RollupOptions {
     input: ['src/index.ts', 'src/generate/generate.ts'],
     output: {
       banner,
+      esModule: false,
       interop: 'auto',
       exports: 'named',
-      esModule: false,
       preserveModules: true,
       dir: `${root}/${bundler}`,
       format: esnext ? 'esm' : 'cjs',
@@ -71,6 +71,7 @@ function createConfig(esnext: boolean, bundler: string): RollupOptions {
     plugins: [
       env(esnext),
       typescript({
+        rootDir: 'src',
         declaration: true,
         declarationDir: `${root}/${bundler}`,
         include: ['../src/**/*', '../global.d.ts']

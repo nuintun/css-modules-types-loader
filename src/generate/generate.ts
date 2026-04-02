@@ -27,12 +27,7 @@ export interface GenerateOptions extends Options {
   content: string;
 }
 
-export default async function generate({
-  eol,
-  path,
-  banner,
-  content
-}: GenerateOptions): Promise<Output> {
+export async function generate({ eol, path, banner, content }: GenerateOptions): Promise<Output> {
   const typings = generateTypings(content, banner, eol);
 
   if (typings) {
