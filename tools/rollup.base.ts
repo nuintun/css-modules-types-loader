@@ -38,9 +38,7 @@ function env(esnext: boolean) {
     preventAssignment: true,
     values: {
       __NAME__: JSON.stringify(pkg.name),
-      __WORKER__: esnext
-        ? `new URL('./generate.js', import.meta.url).href`
-        : `require.resolve('./generate.cjs')`
+      __WORKER__: esnext ? `new URL('./generate.js', import.meta.url).href` : `require.resolve('./generate.cjs')`
     }
   });
 }

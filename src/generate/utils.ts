@@ -68,9 +68,7 @@ export function collect(left: AnyNode, right: AnyNode, collector: Collector): vo
  * @description Parses the styles from the given content.
  * @param content The content to parse the styles from.
  */
-export function parseStyles(
-  content: string
-): [named: boolean, styles: Mapping, reexports: Mapping] {
+export function parseStyles(content: string): [named: boolean, styles: Mapping, reexports: Mapping] {
   let named = true;
 
   const ast = parse(content, {
@@ -133,11 +131,7 @@ export function parseStyles(
  * @param banner Optional banner string.
  * @param eol End of line character.
  */
-export function generateTypings(
-  content: string,
-  banner?: string,
-  eol: string = `\n`
-): string | null {
+export function generateTypings(content: string, banner?: string, eol: string = `\n`): string | null {
   const [named, styles, reexports] = parseStyles(content);
 
   if (styles.size > 0) {
